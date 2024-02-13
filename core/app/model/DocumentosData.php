@@ -11,6 +11,9 @@ class DocumentosData
 		$this->email = "";
 		$this->password = "";
 		$this->created_at = "NOW()";
+		//$this->filename = "";
+		//$this->short_name = "";
+		$this->updated_at = "NOW()";
 	}
 
 
@@ -25,32 +28,18 @@ class DocumentosData
 	public function add()
 	{
 
-
-		/* $prueba = $this->retardo;
-
-		if ($prueba < 5) {
-			$clasificacion = "01:00 A 05:00";
-		} elseif ($prueba > 4 && $prueba < 15) {
-			$clasificacion = "05:01 A 15:00";
-		} elseif ($prueba > 15 && $prueba < 30) {
-			$clasificacion = "15:01 A 30:00";
-		} elseif ($prueba >= 30) {
-			$clasificacion = "MAS DE 30:00";
-		}
-
-		$linea = $this->id_linea;
-		if ($linea == 1 || $linea == 3 || $linea == 4 || $linea == 12) {
-			$gerencia = 1;
-		} elseif ($linea == 2 || $linea == 5 || $linea == 6 || $linea == 11) {
-			$gerencia = 2;
-		} elseif ($linea == 7 || $linea == 8 || $linea == 9 || $linea == 10) {
-			$gerencia = 3;
-		}
- */
 		//$status = 'Active';
 		//$usuario = Core::$user->id;
+		/* $sql = "insert into " . self::$tablename . " (n_turno,f_e_turno,f_e_oficio,asunto,id_area,instrucciones,f_respuesta,n_oficio,id_usuario,observaciones,id_estado,filename,short_name,created_at,updated_at,activo) ";
+		$sql .= "value (\"$this->n_turno\",\"$this->f_e_turno\",\"$this->f_e_oficio\",\"$this->asunto\",\"$this->id_area\",\"$this->instrucciones\",\"$this->f_respuesta\",\"$this->n_oficio\",\"$this->id_usuario\",\"$this->observaciones\",\"$this->id_estado\",\"$this->filename\",\"$this->short_name\",\"$this->created_at\",\"$this->created_at\",1)";
+		 */
+		/* 
 		$sql = "insert into " . self::$tablename . " (n_turno,f_e_turno,f_e_oficio,asunto,id_area,instrucciones,f_respuesta,n_oficio,id_usuario,observaciones,id_estado,created_at) ";
-		$sql .= "value (\"$this->n_turno\",\"$this->f_e_turno\",\"$this->f_e_oficio\",\"$this->asunto\",\"$this->id_area\",\"$this->instrucciones\",\"$this->f_respuesta\",\"$this->n_oficio\",\"$this->id_usuario\",\"$this->observaciones\",\"$this->id_estado\",$this->created_at)";
+		$sql .= "value (\"$this->n_turno\",\"$this->f_e_turno\",\"$this->f_e_oficio\",\"$this->asunto\",\"$this->id_area\",\"$this->instrucciones\",\"$this->f_respuesta\",\"$this->n_oficio\",\"$this->id_usuario\",\"$this->observaciones\",\"$this->id_estado\",\"$this->created_at\")";
+		Executor::doit($sql); */
+
+		$sql = "insert into " . self::$tablename . " (n_turno,f_e_turno,f_e_oficio,asunto,id_area,instrucciones,f_respuesta,n_oficio,id_usuario,observaciones,id_estado,filename,short_name,created_at,activo) ";
+		$sql .= "value (\"$this->n_turno\",\"$this->f_e_turno\",\"$this->f_e_oficio\",\"$this->asunto\",\"$this->id_area\",\"$this->instrucciones\",\"$this->f_respuesta\",\"$this->n_oficio\",\"$this->id_usuario\",\"$this->observaciones\",\"$this->id_estado\",\"$this->filename\",\"$this->short_name\",$this->created_at,1)";
 		Executor::doit($sql);
 	}
 
@@ -102,7 +91,7 @@ class DocumentosData
 
 	public static function getByDate($date)
 	{
-		$sql = "select count(*) as cnt from " . self::$tablename . " where date(created_at)= \"$date\"";
+		$sql = "select count(*) as cnt from " . self::$tablename . " where id_estado = 2 and date(created_at)= \"$date\"";
 		$query = Executor::doit($sql);
 		return Model::one($query[0], new DocumentosData());
 	}

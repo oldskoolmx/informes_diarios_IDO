@@ -2240,6 +2240,24 @@ class upload {
      */
     var $language;
 
+ /**
+     * Checks if a function is available
+     *
+     * @access private
+     * @param  string  $func Function name
+     * @return boolean Success
+     */
+    function function_enabled($func) {
+        // cache the list of disabled functions
+        static $disabled = null;
+        if ($disabled === null) $disabled = array_map('trim', array_map('strtolower', explode(',', ini_get('disable_functions'))));
+        // cache the list of functions blacklisted by suhosin
+        static $blacklist = null;
+        if ($blacklist === null) $blacklist = extension_loaded('suhosin') ? array_map('trim', array_map('strtolower', explode(',', ini_get('  suhosin.executor.func.blacklist')))) : array();
+        // checks if the function is really enabled
+        return (function_exists($func) && !in_array($func, $disabled) && !in_array($func, $blacklist));
+    }
+
     /**
      * Init or re-init all the processing variables to their default values
      *
@@ -2957,7 +2975,7 @@ class upload {
             }
 
             // checks MIME type with mime_magic
-            if (!$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === FALSE) {
+            /*if (!$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === FALSE) {
                 if ($this->mime_magic) {
                     $this->log .= '- Checking MIME type with mime.magic file (mime_content_type())<br />';
                     if (function_exists('mime_content_type')) {
@@ -2965,6 +2983,26 @@ class upload {
                         $this->log .= '&nbsp;&nbsp;&nbsp;&nbsp;MIME type detected as ' . $this->file_src_mime . ' by mime_content_type()<br />';
                         if (preg_match("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", $this->file_src_mime)) {
                             $this->file_src_mime = preg_replace("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", '$1/$2', $this->file_src_mime);
+                            $this->log .= '-&nbsp;MIME validated as ' . $this->file_src_mime . '<br />';
+                        } else {
+                            $this->file_src_mime = null;
+                        }
+                    } else {
+                        $this->log .= '&nbsp;&nbsp;&nbsp;&nbsp;mime_content_type() is not available<br />';
+                    }
+                } else {
+                    $this->log .= '- mime.magic file (mime_content_type()) is deactivated<br />';
+                }
+            }*/
+            
+            if (!$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === false) {
+                if ($this->mime_magic) {
+                    $this->log .= '- checking MIME type with mime.magic file (mime_content_type())<br />';
+                    if ($this->function_enabled('mime_content_type')) {
+                        $this->file_src_mime = mime_content_type($this->file_src_pathname);
+                        $this->log .= '&nbsp;&nbsp;&nbsp;&nbsp;MIME type detected as ' . $this->file_src_mime . ' by mime_content_type()<br />';
+                        if (preg_match("/^([\.\w-]+)\/([\.\w-]+)(.*)$/i", $this->file_src_mime)) {
+                            $this->file_src_mime = preg_replace("/^([\.\w-]+)\/([\.\w-]+)(.*)$/i", '$1/$2', $this->file_src_mime);
                             $this->log .= '-&nbsp;MIME validated as ' . $this->file_src_mime . '<br />';
                         } else {
                             $this->file_src_mime = null;
@@ -3005,7 +3043,7 @@ class upload {
             }
 
             // default to MIME from browser (or Flash)
-            if (!empty($mime_from_browser) && !$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime)) {
+            /*if (!empty($mime_from_browser) && !$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime)) {
                 $this->file_src_mime =$mime_from_browser;
                 $this->log .= '- MIME type detected as ' . $this->file_src_mime . ' by browser<br />';
                 if (preg_match("/^([\.-\w]+)\/([\.-\w]+)(.*)$/i", $this->file_src_mime)) {
@@ -3014,7 +3052,19 @@ class upload {
                 } else {
                     $this->file_src_mime = null;
                 }
+            }*/
+
+            if (!empty($mime_from_browser) && !$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime)) {
+                $this->file_src_mime =$mime_from_browser;
+                $this->log .= '- MIME type detected as ' . $this->file_src_mime . ' by browser<br />';
+                if (preg_match("/^([\.\w-]+)\/([\.\w-]+)(.*)$/i", $this->file_src_mime)) {
+                    $this->file_src_mime = preg_replace("/^([\.\w-]+)\/([\.\w-]+)(.*)$/i", '$1/$2', $this->file_src_mime);
+                    $this->log .= '-&nbsp;MIME validated as ' . $this->file_src_mime . '<br />';
+                } else {
+                    $this->file_src_mime = null;
+                }
             }
+
 
             // we need to work some magic if we upload via Flash
             if ($this->file_src_mime == 'application/octet-stream' || !$this->file_src_mime || !is_string($this->file_src_mime) || empty($this->file_src_mime) || strpos($this->file_src_mime, '/') === FALSE) {
@@ -3210,8 +3260,23 @@ class upload {
      * @param  string  $size  Size in bytes, or shorthand byte options
      * @return integer Size in bytes
      */
+    /*
     function getsize($size) {
         $last = strtolower($size[strlen($size)-1]);
+        switch($last) {
+            case 'g':
+                $size *= 1024;
+            case 'm':
+                $size = (int)$size * 1024;
+            case 'k':
+                $size *= 1024;
+        }
+        return $size;
+    }*/
+    function getsize($size) {
+        if ($size === null) return null;
+        $last = is_string($size) ? strtolower(substr($size, -1)) : null;
+        $size = (int) $size;
         switch($last) {
             case 'g':
                 $size *= 1024;
@@ -3222,7 +3287,6 @@ class upload {
         }
         return $size;
     }
-
     /**
      * Decodes offsets
      *

@@ -4,36 +4,36 @@ var udateTime = function() {
         minutes = currentDate.getMinutes(), 
         seconds = currentDate.getSeconds(),
         weekDay = currentDate.getDay(), 
-        day = currentDate.getDay(), 
+        day = currentDate.getDate(), 
         month = currentDate.getMonth(), 
         year = currentDate.getFullYear();
 
     const weekDays = [
-        'DOMINGO',
-        'LUNES',
-        'MARTES',
-        'MIERCOLES',
-        'JUEVES',
-        'VIERNES',
-        'SABADO'
+        'Domingo',
+        'Lunes',
+        'Martes',
+        'Miercoles',
+        'Jueves',
+        'Viernes',
+        'Sabado'
     ];
 
     document.getElementById('weekDay').textContent = weekDays[weekDay];
     document.getElementById('day').textContent = day;
     
     const months = [
-        'ENERO',
-        'FEBRERO',
-        'MARZO',
-        'ABRIL',
-        'MAYO',
-        'JUNIO',
-        'JULIO',
-        'AGOSTO',
-        'SEPTIEMBRE',
-        'OCTUBRE',
-        'NOVIEMBRE',
-        'DICIEMBRE'
+        'Enero',
+        'Febrero',
+        'Marzo',
+        'Abril',
+        'Mayo',
+        'Junio',
+        'Julio',
+        'Agosto',
+        'Septiembre',
+        'Octubre',
+        'Noviembre',
+        'Diciembre'
     ];
 
     document.getElementById('month').textContent = months[month];

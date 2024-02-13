@@ -17,27 +17,7 @@
 				</div>
 
 			</div>
-			<!-- <div id="content" class="col-lg-12">
-				<div class="date">
-					<span id="weekDay" class="weekDay"></span>,
-					<span id="day" class="day"></span> de
-					<span id="month" class="month"></span> del
-					<span id="year" class="year"></span>
-				</div>
-				<div class="clock">
-					<span id="hours" class="hours"></span> :
-					<span id="minutes" class="minutes"></span> :
-					<span id="seconds" class="seconds"></span>
-				</div>
-			</div> -->
-			<!-- <div class="col-lg-12">
-				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
-			<!-- Bloque de anuncios adaptable -->
-			<!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6676636635558550" data-ad-slot="8523024962" data-ad-format="auto" data-full-width-responsive="true"></ins>
-				<script>
-					(adsbygoogle = window.adsbygoogle || []).push({});
-				</script>
-			</div> -->
+
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
 					<li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -50,17 +30,7 @@
 <!-- /.content-header -->
 
 <?php
-/* $grupo = $_GET["g"];
-if ($grupo == "g1") {
-	$gerencia = " / Gerencia de Lineas 1,3,4 y 12";
-} elseif ($grupo == "g2") {
-	$gerencia = " / Gerencia de Lineas 2,5,6 y B";
-} elseif ($grupo == "g3") {
 
-	$gerencia = " / Gerencia de Lineas 7,8,9 y A";
-} else {
-	$gerencia = " / Todas las Gerencias";
-} */
 
 if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 
@@ -87,13 +57,13 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 								<div>
 									<table class="table table-striped table-bordered table-hover datatable responsive">
 										<thead>
-											<th>N. TURNO Y OFICIO</th>
-											<th>F. TURNO</th>
-											<th>F. OFICIO</th>
-											<th>ASUNTO</th>
-											<th>F. RESPUESTA</th>
-											<th>REGISTRO</th>
-											<th>CLASIFICACION</th>
+											<th>N. Turno y Oficio</th>
+											<th>F. Turno</th>
+											<th>F. Oficio</th>
+											<th>Asunto</th>
+											<th>F. Respuesta</th>
+											<th>Registro</th>
+											<th>Clasificacion</th>
 
 											<th>Acciones</th>
 										</thead>
@@ -107,7 +77,21 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 												<td><?php echo $con->asunto; ?></td>
 												<td><?php echo $con->f_respuesta; ?></td>
 												<td><?php echo $usuario->name; ?></td>
-												<td><?php echo $item->name; ?></td>
+
+
+												<td>
+													<?php if ($item->id == 1) :  ?>
+														<span class="badge bg-danger"><?php echo $item->name; ?></span>
+													<?php elseif ($item->id == 2) : ?>
+														<span class="badge bg-success"><?php echo $item->name; ?></span>
+													<?php else : ?>
+														<span class="badge bg-warning"><?php echo $item->name; ?></span>
+													<?php endif; ?>
+												</td>
+
+
+
+
 
 												<td style="width:190px; ">
 													<a href="./?view=documentos&opt=edit&id=<?php echo $con->id; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a>
@@ -128,7 +112,7 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 								</div>
 
 							<?php else : ?>
-								<p class="alert alert-warning">No hay Documentos registradas.</p>
+								<p class="alert alert-warning">No hay Documentos registrados.</p>
 							<?php endif; ?>
 						</div>
 
@@ -147,12 +131,12 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 
 					<div class="card">
 						<div class="card-header">
-							<h1 class="">Nueva Interrupcion</h1>
+							<h1 class=""><b> R E G I S T R O / D O C U M E N T O S </b></h1>
 							<a href="./?view=documentos&opt=all" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Regresar</a>
 						</div>
 						<div class="card-body">
 
-							<form class="row g-3" method="post" action="./?action=documentos&opt=add">
+							<form class="row g-3" method="post" action="./?action=documentos&opt=add" enctype="multipart/form-data" role="form">
 								<div class="col-md-6 mb-3">
 									<label for="name" class="form-label">NÚMERO DEL TURNO DE CORRESPONDENCIA Y OFICIO</label>
 									<input type="text" name="n_turno" id="lastname" class="form-control" placeholder="SDGOXX-XX UT/XXXX/XXXX" required>
@@ -233,18 +217,21 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 									<?php endif; ?>
 								</div>
 
-								<!-- <div class="col-md-6 mb-3">
-									<label for="exampleInputFile">INGRESAR ARCHIVO</label>
+
+
+
+								<div class="col-md-6 mb-3">
+									<label for="exampleInputFile">Ingrese el Archivo</label>
 									<div class="input-group">
 										<div class="custom-file">
-											<input type="file" class="custom-file-input" id="exampleInputFile">
-											<label class="custom-file-label" for="exampleInputFile">SELECCIONA EL ARCHIVO</label>
+											<input type="file" class="custom-file-input" name="filename" id="exampleInputFile" lang="es">
+											<label class="custom-file-label" for="exampleInputFile">Seleccionar Archivo</label>
 										</div>
 										<div class="input-group-append">
 											<span class="input-group-text">Subir</span>
 										</div>
 									</div>
-								</div> -->
+								</div>
 
 								<div class="col-md-12">
 									<button type="submit" class="btn btn-primary">Agregar</button>

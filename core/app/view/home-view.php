@@ -5,10 +5,10 @@
           <div class="col-sm-6">
             <!-- <h1 class="m-0">Dashboard</h1> -->
             <div class="date" style="font-size:28px;">
-              <span id="weekDay" class="weekDay"></span>,
-              <span id="day" class="day"></span> DE
-              <span id="month" class="month"></span> DEL
-              <span id="year" class="year"></span>
+              <b><span id="weekDay" class="weekDay"></span>,
+                <span id="day" class="day"></span> de
+                <span id="month" class="month"></span> del
+                <span id="year" class="year"></span></b>
             </div>
             <div class="clock" style="font-size:24px;">
               <span id="hours" class="hours"></span> :
@@ -104,7 +104,7 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-chart-pie mr-1"></i>
-                  DOCUMENTOS
+                  <b>D O C U M E N T O S</b>
                 </h3>
 
               </div><!-- /.card-header -->
@@ -127,9 +127,7 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-calendar-alt mr-1"></i>
-                  DOCUMENTOS DEL <?php echo $fecha_actual = date("d-m-Y");
-
-                                  ?>
+                  <b>D O C U M E N T O S </b> -- <?php echo $fecha_actual = date("d-m-Y"); ?>
                 </h3>
 
               </div><!-- /.card-header -->
@@ -141,14 +139,14 @@
                   <div>
                     <table class="table table-striped table-bordered table-hover datatable ">
                       <thead>
-                        <th>N. TURNO Y OFICIO</th>
-                        <th>F. TURNO</th>
-                        <th>F. OFICIO</th>
-                        <th>ASUNTO</th>
-                        <th>F. RESPUESTA</th>
-                        <th>REGISTRO</th>
-                        <th>CLASIFICACION</th>
-                        <th>Acciones</th>
+                        <th>N. Turno y Oficio</th>
+                        <th>F. Turno</th>
+                        <th>F. Oficio</th>
+                        <th>Asunto</th>
+                        <th>F. Respuesta</th>
+                        <th>Registro</th>
+                        <th>Clasificacion</th>
+
                       </thead>
 
                       <?php foreach ($contacts as $con) :
@@ -161,7 +159,17 @@
                           <td><?php echo $con->asunto; ?></td>
                           <td><?php echo $con->f_respuesta; ?></td>
                           <td><?php echo $usuario->name; ?></td>
-                          <td><?php echo $item->name; ?></td>
+
+
+                          <td>
+                            <?php if ($item->id == 1) :  ?>
+                              <span class="badge bg-danger"><?php echo $item->name; ?></span>
+                            <?php elseif ($item->id == 2) : ?>
+                              <span class="badge bg-success"><?php echo $item->name; ?></span>
+                            <?php else : ?>
+                              <span class="badge bg-warning"><?php echo $item->name; ?></span>
+                            <?php endif; ?>
+                          </td>
 
                           <td style="width:190px; ">
                             <a href="./?view=documentos&opt=edit&id=<?php echo $con->id; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a>
@@ -215,12 +223,12 @@
             labels: [
               <?php
               $start  = time() - (60 * 60 * 26 * 30);
-              for ($i = $start; $i <= time(); $i += (60 * 60 * 24)) : ?> "<?php echo date('Y-m-d', $i); ?>",
+              for ($i = $start; $i <= time(); $i += (60 * 60 * 24)) : ?> "<?php echo date('d-m-Y', $i); ?>",
               <?php endfor; ?>
 
             ],
             datasets: [{
-              label: "Interrupciones",
+              label: "Atendidos",
               fill: true,
               backgroundColor: gradient,
               borderColor: "#3B7DDD",
@@ -228,7 +236,7 @@
                 <?php
                 $start  = time() - (60 * 60 * 26 * 30);
                 for ($i = $start; $i <= time(); $i += (60 * 60 * 24)) : ?>
-                  <?php echo (PersonData::getByDate(date('Y-m-d', $i))->cnt); ?>,
+                  <?php echo (DocumentosData::getByDate(date('Y-m-d', $i))->cnt); ?>,
                 <?php endfor; ?>
               ],
             }]

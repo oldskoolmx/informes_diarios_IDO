@@ -665,6 +665,7 @@
       })
     })
   </script>
+
   <script type="text/javascript">
     $(document).ready(function() {
       $(".datatable").DataTable({
@@ -672,6 +673,18 @@
           className:"centered",targets:[0,1,2,3,4,5,6,7,8,9]
         }],*/
         responsive: true,
+        buttons: [
+          'copyHtml5',
+          'excelHtml5',
+          'csvHtml5',
+          'pdfHtml5',
+          'print'
+        ],
+        /*  dom: "<'row'<'col-md-12 text-center'B>>" +
+           "<'row'<'col-md-6'l><'col-md-6'f>>" +
+           "<'row'<'col-md-12'tr>>" +
+           "<'row'<'col-md-6'i><'col-md-6'p>>", */
+        dom: 'Bfrtilp',
         language: {
           "sProcessing": "Procesando...",
           "sLengthMenu": "Mostrar _MENU_ registros",

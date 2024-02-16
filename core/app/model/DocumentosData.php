@@ -138,7 +138,26 @@ class DocumentosData
 	public static function getAll()
 	{
 		$sql = "select * from " . self::$tablename;
-		//$sql = "select a.id as id,a.fecha,b.name as id_linea,a.tren,a.modelo,a.motriz,d.name as evento,a.retardo,a.clasificacion,c.name as id_area from person1 a, category b, areas c, eventos d where a.id_linea=b.id and a.id_area=c.id and a.evento=d.id";
+		$query = Executor::doit($sql);
+		return Model::many($query[0], new DocumentosData());
+	}
+
+	/* public static function getAllToDay()
+	{
+		$fecha_hoy = date("Y-m-d");
+		$sql = "select * from " . self::$tablename . "where DATE(created_at) = '$fecha_hoy'";
+		$query = Executor::doit($sql);
+		return Model::many($query[0], new DocumentosData());
+	} */
+
+
+	public static function getAllToDay()
+	{
+		//date(created_at)= \"$date\"
+		$fecha_hoy = date("Y-m-d");
+		//$fecha_hoy = "2024-02-09";
+
+		$sql = "SELECT * FROM " . self::$tablename . " WHERE date(created_at) = \"$fecha_hoy\"";
 		$query = Executor::doit($sql);
 		return Model::many($query[0], new DocumentosData());
 	}

@@ -127,14 +127,14 @@
               <div class="card-header">
                 <h3 class="card-title">
                   <i class="fas fa-calendar-alt mr-1"></i>
-                  <b>D O C U M E N T O S </b> -- <?php echo $fecha_actual = date("d-m-Y"); ?>
+                  <b>D O C U M E N T O S </b>
                 </h3>
 
               </div><!-- /.card-header -->
-              <div class="card-body">
+              <div class="card-body table-responsive">
 
                 <?php
-                $contacts = DocumentosData::getAll();
+                $contacts = DocumentosData::getAllToDay();
                 if (count($contacts) > 0) : ?>
                   <div>
                     <table class="table table-striped table-bordered table-hover datatable ">
@@ -146,6 +146,8 @@
                         <th>F. Respuesta</th>
                         <th>Registro</th>
                         <th>Clasificacion</th>
+
+                        <th>Acciones</th>
 
                       </thead>
 
@@ -171,9 +173,10 @@
                             <?php endif; ?>
                           </td>
 
+
                           <td style="width:190px; ">
                             <a href="./?view=documentos&opt=edit&id=<?php echo $con->id; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a>
-                            <a href="./?action=documentos&opt=del&id=<?php echo $con->id; ?>&g=<?php echo $grupo; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar</a>
+                            <a href="./?action=documentos&opt=del&id=<?php echo $con->id; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar</a>
                             <script type="text/javascript">
                               $("#item-<?php echo $con->id; ?>").click(function(e) {
                                 e.preventDefault();
@@ -190,7 +193,21 @@
                   </div>
 
                 <?php else : ?>
-                  <p class="alert alert-warning">NO HAY DOCUMENTOS REGISTRADOS.</p>
+
+
+
+
+
+                  <div class="info-box mb-3 bg-warning">
+                    <span class="info-box-icon"><i class="fas fa-tag"></i></span>
+
+                    <div class="info-box-content">
+                      <span class="info-box-text"><?php echo $fecha_actual = date("d-m-Y"); ?></span>
+                      <span class="info-box-number">NO HAY DOCUMENTOS REGISTRADOS</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                  </div>
+
                 <?php endif; ?>
 
 

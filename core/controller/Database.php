@@ -9,11 +9,12 @@ class Database
 		$this->pass = "";
 		$this->host = "localhost";
 		$this->ddbb = "gestion";
+		$this->port = 3307;
 	}
 
 	function connect()
 	{
-		$con = new mysqli($this->host, $this->user, $this->pass, $this->ddbb);
+		$con = new mysqli($this->host, $this->user, $this->pass, $this->ddbb, $this->port);
 		return $con;
 	}
 

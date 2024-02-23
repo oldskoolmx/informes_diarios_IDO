@@ -34,14 +34,15 @@
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box bg-primary">
               <div class="inner">
                 <h3><?php echo count(DocumentosData::getAll()); ?></h3>
 
                 <p><b>D O C U M E N T O S</b></p>
               </div>
               <div class="icon">
-                <i class="fas fa-male"></i>
+                <i class="fas fa-folder-open"></i>
+                <!-- <i class="fa-solid fa-folder-open"></i> -->
               </div>
               <a href="./?view=inter&opt=all&g=g" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -56,7 +57,7 @@
                 <p><b>A T E N D I D O S </b></p>
               </div>
               <div class="icon">
-                <i class="fa fa-th-list"></i>
+                <i class="fa fa-thumbs-up"></i>
               </div>
               <a href="./?view=inter&opt=all&g=g" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -71,7 +72,11 @@
                 <p><b>S I N - A T E N D E R</b></p>
               </div>
               <div class="icon">
-                <i class="fa fa-users"></i>
+                <!-- <i class="fa fa-users"></i> -->
+                <i class="fas fa-laptop-code"></i>
+                <!-- <i class="fa-solid fa-laptop-code"></i> -->
+                <!-- <i class="fas fa-file-lines"></i> -->
+                <!-- <ion-icon class="close-circle-outline"></ion-icon> -->
               </div>
               <a href="./?view=inter&opt=all&g=g" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -86,12 +91,44 @@
                 <p><b>P E N D I E N T E S</b></p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fas fa-keyboard"></i>
+                <!-- <i class="ion ion-pie-graph"></i> -->
               </div>
               <a href="./?view=documentos&opt=all" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-indigo">
+              <div class="inner">
+                <h3><?php echo count(DocumentosData::getAllS()); ?></h3>
+
+                <p><b>C A N C E L A D O </b></p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-file-code"></i>
+                <!-- <i class="fa-solid fa-rectangle-xmark"></i> -->
+              </div>
+              <a href="./?view=inter&opt=all&g=g" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
           <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-orange">
+              <div class="inner">
+                <h3><?php echo count(DocumentosData::getAllP()); ?></h3>
+
+                <p><b>P R E S T A M O</b></p>
+              </div>
+              <div class="icon">
+                <!-- <i class="ion ion-pie-graph"></i> -->
+                <i class="fas fa-wallet"></i>
+              </div>
+              <a href="./?view=documentos&opt=all" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
         </div>
         <!-- /.row -->
         <!-- Main row -->

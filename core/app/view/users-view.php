@@ -2,7 +2,19 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>DataTables</h1>
+        <!-- <h1>DataTables 1</h1> -->
+        <div class="date" style="font-size:28px;">
+          <b><span id="weekDay" class="weekDay"></span>,
+            <span id="day" class="day"></span> de
+            <span id="month" class="month"></span> del
+            <span id="year" class="year"></span></b>
+        </div>
+        <div class="clock" style="font-size:24px;">
+          <span id="hours" class="hours"></span> :
+          <span id="minutes" class="minutes"></span> :
+          <span id="seconds" class="seconds"></span>
+        </div>
+
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -26,8 +38,8 @@
 
           <div class="card">
             <div class="card-header">
-              <h1 class="">Usuarios</h1>
-              <a href="./?view=users&opt=new" class="btn btn-secondary">Nuevo Usuario</a>
+              <h1 class=""><b>U S U A R I O S </b></h1>
+              <a href="./?view=users&opt=new" class="btn btn-primary">Nuevo Usuario</a>
             </div>
 
             <div class="card-body">

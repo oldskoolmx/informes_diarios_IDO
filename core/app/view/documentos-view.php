@@ -5,10 +5,10 @@
 			<div class="col-sm-6">
 				<!-- <h1>DataTables 1</h1> -->
 				<div class="date" style="font-size:28px;">
-					<span id="weekDay" class="weekDay"></span>,
-					<span id="day" class="day"></span> de
-					<span id="month" class="month"></span> del
-					<span id="year" class="year"></span>
+					<b><span id="weekDay" class="weekDay"></span>,
+						<span id="day" class="day"></span> de
+						<span id="month" class="month"></span> del
+						<span id="year" class="year"></span></b>
 				</div>
 				<div class="clock" style="font-size:24px;">
 					<span id="hours" class="hours"></span> :
@@ -50,7 +50,7 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 						<div class="card-header">
 							<h1 class=""><b>D O C U M E N T O S </b><?php //echo $gerencia; 
 																	?></h1>
-							<a href="./?view=documentos&opt=new" class="btn btn-secondary">Registrar Documento</a>
+							<a href="./?view=documentos&opt=new" class="btn btn-primary">Registrar Documento</a>
 						</div>
 						<div class="card-body">
 							<?php if (count($contacts) > 0) : ?>
@@ -95,7 +95,7 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 
 												<td style="width:190px; ">
 													<a href="./?view=documentos&opt=edit&id=<?php echo $con->id; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a>
-													<a href="./?action=documentos&opt=del&id=<?php echo $con->id; ?>&g=<?php echo $grupo; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar</a>
+													<a href="./?action=documentos&opt=del&id=<?php echo $con->id; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar</a>
 													<script type="text/javascript">
 														$("#item-<?php echo $con->id; ?>").click(function(e) {
 															e.preventDefault();
@@ -156,20 +156,32 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 									<label>A S U N T O</label>
 									<textarea class="form-control" rows="3" name="asunto" placeholder="INGRESE EL ASUNTO"></textarea>
 								</div>
-								<div class="col-md-6 mb-3">
+								<!-- <div class="col-md-6 mb-3">
 									<label for="area_atencion" class="form-label">AREA TURNADA</label>
 									<?php
-									$cats = AreasturData::getAll();
+									// $cats = AreasturData::getAll();
 									?>
-									<?php if (count($cats) > 0) : ?>
+									<?php //if (count($cats) > 0) : 
+									?>
 										<select name="id_area" class="form-control" required>
 											<option value="">-- AREA TURNADA --</option>
-											<?php foreach ($cats as $cat) : ?>
-												<option value="<?= $cat->id; ?>"><?= $cat->name; ?></option>
-											<?php endforeach; ?>
+											<?php //foreach ($cats as $cat) : 
+											?>
+												<option value="<? //= $cat->id; 
+																?>"><? //= $cat->name; 
+																	?></option>
+											<?php //endforeach; 
+											?>
 										</select>
-									<?php endif; ?>
+									<?php //endif; 
+									?>
+								</div> -->
+								<div class="col-md-6 mb-3">
+									<label for="name" class="form-label">AREA TURNADA</label>
+									<input type="text" name="id_area" id="name" class="form-control" placeholder="INGRESE EL AREA A TURNAR" required>
+
 								</div>
+
 								<div class="col-md-6 mb-3">
 									<label>I N S T R U C C I O N E S</label>
 									<textarea class="form-control" rows="3" name="instrucciones" placeholder="INGRESE LAS INSTRUCCIONES"></textarea>

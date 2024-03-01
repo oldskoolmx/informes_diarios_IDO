@@ -322,7 +322,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./?view=documentos&opt=all" class="nav-link">
+                <a href="./?view=docus&opt=all" class="nav-link">
                   <i class="nav-icon fas fa-edit"></i>
                   <p>
                     Documentos
@@ -346,6 +346,16 @@
 
                   <p>
                     Calendario
+
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./?view=tester&opt=all" class="nav-link">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
+
+                  <p>
+                    Tester
 
                   </p>
                 </a>

@@ -102,7 +102,7 @@
             <!-- small box -->
             <div class="small-box bg-indigo">
               <div class="inner">
-                <h3><?php echo count(DocumentosData::getAllS()); ?></h3>
+                <h3><?php echo count(DocumentosData::getAllC()); ?></h3>
 
                 <p><b>C A N C E L A D O </b></p>
               </div>
@@ -118,7 +118,7 @@
             <!-- small box -->
             <div class="small-box bg-orange">
               <div class="inner">
-                <h3><?php echo count(DocumentosData::getAllP()); ?></h3>
+                <h3><?php echo count(DocumentosData::getAllPre()); ?></h3>
 
                 <p><b>P R E S T A M O</b></p>
               </div>

@@ -1,7 +1,7 @@
 <?php
-class DocumentosData
+class DocusData
 {
-	public static $tablename = "tablero";
+	public static $tablename = "documentos";
 
 	public function __construct()
 	{
@@ -28,18 +28,10 @@ class DocumentosData
 	public function add()
 	{
 
-		//$status = 'Active';
-		//$usuario = Core::$user->id;
-		/* $sql = "insert into " . self::$tablename . " (n_turno,f_e_turno,f_e_oficio,asunto,id_area,instrucciones,f_respuesta,n_oficio,id_usuario,observaciones,id_estado,filename,short_name,created_at,updated_at,activo) ";
-		$sql .= "value (\"$this->n_turno\",\"$this->f_e_turno\",\"$this->f_e_oficio\",\"$this->asunto\",\"$this->id_area\",\"$this->instrucciones\",\"$this->f_respuesta\",\"$this->n_oficio\",\"$this->id_usuario\",\"$this->observaciones\",\"$this->id_estado\",\"$this->filename\",\"$this->short_name\",\"$this->created_at\",\"$this->created_at\",1)";
-		 */
-		/* 
-		$sql = "insert into " . self::$tablename . " (n_turno,f_e_turno,f_e_oficio,asunto,id_area,instrucciones,f_respuesta,n_oficio,id_usuario,observaciones,id_estado,created_at) ";
-		$sql .= "value (\"$this->n_turno\",\"$this->f_e_turno\",\"$this->f_e_oficio\",\"$this->asunto\",\"$this->id_area\",\"$this->instrucciones\",\"$this->f_respuesta\",\"$this->n_oficio\",\"$this->id_usuario\",\"$this->observaciones\",\"$this->id_estado\",\"$this->created_at\")";
-		Executor::doit($sql); */
 
-		$sql = "insert into " . self::$tablename . " (n_turno,f_e_turno,f_e_oficio,asunto,id_area,instrucciones,f_respuesta,n_oficio,id_usuario,observaciones,id_estado,filename,short_name,created_at,activo) ";
-		$sql .= "value (\"$this->n_turno\",\"$this->f_e_turno\",\"$this->f_e_oficio\",\"$this->asunto\",\"$this->id_area\",\"$this->instrucciones\",\"$this->f_respuesta\",\"$this->n_oficio\",\"$this->id_usuario\",\"$this->observaciones\",\"$this->id_estado\",\"$this->filename\",\"$this->short_name\",$this->created_at,1)";
+
+		$sql = "insert into " . self::$tablename . " (r_n_oficio,r_f_e_oficio,r_f_r_oficio,r_f_atencion,r_solicitud,r_filename,r_short_name,d_n_registro,d_n_folio,d_f_compromiso,d_instrucciones,filename,short_name,id_usuario,id_estado,created_at,activo) ";
+		$sql .= "value (\"$this->r_n_oficio\",\"$this->r_f_e_oficio\",\"$this->r_f_r_oficio	\",\"$this->r_f_atencion\",\"$this->r_solicitud\",\"$this->r_filename\",\"$this->r_short_name\",\"$this->d_n_registro\",\"$this->d_n_folio\",\"$this->d_f_compromiso\",\"$this->d_instrucciones\",\"$this->filename\",\"$this->short_name\",1,1,$this->created_at,1)";
 		Executor::doit($sql);
 	}
 
@@ -79,21 +71,21 @@ class DocumentosData
 	{
 		$sql = "select * from " . self::$tablename . " where id=$id";
 		$query = Executor::doit($sql);
-		return Model::one($query[0], new DocumentosData());
+		return Model::one($query[0], new DocusData());
 	}
 
 	public static function getBy($k, $v)
 	{
 		$sql = "select * from " . self::$tablename . " where $k=\"$v\"";
 		$query = Executor::doit($sql);
-		return Model::one($query[0], new DocumentosData());
+		return Model::one($query[0], new DocusData());
 	}
 
 	public static function getByDate($date)
 	{
 		$sql = "select count(*) as cnt from " . self::$tablename . " where id_estado = 2 and date(created_at)= \"$date\"";
 		$query = Executor::doit($sql);
-		return Model::one($query[0], new DocumentosData());
+		return Model::one($query[0], new DocusData());
 	}
 
 
@@ -114,7 +106,7 @@ class DocumentosData
 		//$sql = "select * from " . self::$tablename;
 		//$sql = "select a.id as id,a.fecha,b.name as id_linea,a.tren,a.modelo,a.motriz,d.name as evento,a.retardo,a.clasificacion,c.name as id_area from person1 a, category b, areas c, eventos d where a.id_linea=b.id and a.id_area=c.id and a.evento=d.id";
 		$query = Executor::doit($sql);
-		return Model::many($query[0], new DocumentosData());
+		return Model::many($query[0], new DocusData());
 	}
 	public static function getAllRepT()
 	{
@@ -132,14 +124,14 @@ class DocumentosData
 		//$sql = "select * from " . self::$tablename;
 		//$sql = "select a.id as id,a.fecha,b.name as id_linea,a.tren,a.modelo,a.motriz,d.name as evento,a.retardo,a.clasificacion,c.name as id_area from person1 a, category b, areas c, eventos d where a.id_linea=b.id and a.id_area=c.id and a.evento=d.id";
 		$query = Executor::doit($sql);
-		return Model::many($query[0], new DocumentosData());
+		return Model::many($query[0], new DocusData());
 	}
 
 	public static function getAll()
 	{
 		$sql = "select * from " . self::$tablename;
 		$query = Executor::doit($sql);
-		return Model::many($query[0], new DocumentosData());
+		return Model::many($query[0], new DocusData());
 	}
 
 	/* public static function getAllToDay()
@@ -147,7 +139,7 @@ class DocumentosData
 		$fecha_hoy = date("Y-m-d");
 		$sql = "select * from " . self::$tablename . "where DATE(created_at) = '$fecha_hoy'";
 		$query = Executor::doit($sql);
-		return Model::many($query[0], new DocumentosData());
+		return Model::many($query[0], new DocusData());
 	} */
 
 
@@ -159,7 +151,7 @@ class DocumentosData
 
 		$sql = "SELECT * FROM " . self::$tablename . " WHERE date(created_at) = \"$fecha_hoy\"";
 		$query = Executor::doit($sql);
-		return Model::many($query[0], new DocumentosData());
+		return Model::many($query[0], new DocusData());
 	}
 
 	// funcion para mostrar todos los pendientes 
@@ -168,21 +160,21 @@ class DocumentosData
 		$sql = "select * from " . self::$tablename . " where id_estado = 1";
 		//$sql = "select a.id as id,a.fecha,b.name as id_linea,a.tren,a.modelo,a.motriz,d.name as evento,a.retardo,a.clasificacion,c.name as id_area from person1 a, category b, areas c, eventos d where a.id_linea=b.id and a.id_area=c.id and a.evento=d.id";
 		$query = Executor::doit($sql);
-		return Model::many($query[0], new DocumentosData());
+		return Model::many($query[0], new DocusData());
 	}
 	public static function getAllC()
 	{
 		$sql = "select * from " . self::$tablename . " where id_estado = 4";
 		//$sql = "select a.id as id,a.fecha,b.name as id_linea,a.tren,a.modelo,a.motriz,d.name as evento,a.retardo,a.clasificacion,c.name as id_area from person1 a, category b, areas c, eventos d where a.id_linea=b.id and a.id_area=c.id and a.evento=d.id";
 		$query = Executor::doit($sql);
-		return Model::many($query[0], new DocumentosData());
+		return Model::many($query[0], new DocusData());
 	}
 	public static function getAllPre()
 	{
 		$sql = "select * from " . self::$tablename . " where id_estado = 5";
 		//$sql = "select a.id as id,a.fecha,b.name as id_linea,a.tren,a.modelo,a.motriz,d.name as evento,a.retardo,a.clasificacion,c.name as id_area from person1 a, category b, areas c, eventos d where a.id_linea=b.id and a.id_area=c.id and a.evento=d.id";
 		$query = Executor::doit($sql);
-		return Model::many($query[0], new DocumentosData());
+		return Model::many($query[0], new DocusData());
 	}
 	// funcion para mostrar todos los atendidos 
 	public static function getAllA()
@@ -190,7 +182,7 @@ class DocumentosData
 		$sql = "select * from " . self::$tablename . " where id_estado = 2";
 		//$sql = "select a.id as id,a.fecha,b.name as id_linea,a.tren,a.modelo,a.motriz,d.name as evento,a.retardo,a.clasificacion,c.name as id_area from person1 a, category b, areas c, eventos d where a.id_linea=b.id and a.id_area=c.id and a.evento=d.id";
 		$query = Executor::doit($sql);
-		return Model::many($query[0], new DocumentosData());
+		return Model::many($query[0], new DocusData());
 	}
 	// funcion para mostrar todos los sin atender 
 	public static function getAllS()
@@ -198,7 +190,7 @@ class DocumentosData
 		$sql = "select * from " . self::$tablename . " where id_estado = 3";
 		//$sql = "select a.id as id,a.fecha,b.name as id_linea,a.tren,a.modelo,a.motriz,d.name as evento,a.retardo,a.clasificacion,c.name as id_area from person1 a, category b, areas c, eventos d where a.id_linea=b.id and a.id_area=c.id and a.evento=d.id";
 		$query = Executor::doit($sql);
-		return Model::many($query[0], new DocumentosData());
+		return Model::many($query[0], new DocusData());
 	}
 
 	public static function getAllF()
@@ -208,7 +200,7 @@ class DocumentosData
 		$sql = "select * from " . self::$tablename . " where status = 'Active' and fecha='$fecha'";
 		//$sql = "select a.id as id,a.fecha,b.name as id_linea,a.tren,a.modelo,a.motriz,d.name as evento,a.retardo,a.clasificacion,c.name as id_area from person1 a, category b, areas c, eventos d where   a.id_linea=b.id and a.id_area=c.id and a.evento=d.id";
 		$query = Executor::doit($sql);
-		return Model::many($query[0], new DocumentosData());
+		return Model::many($query[0], new DocusData());
 	}
 
 	public static function getAllg1($grupo)
@@ -229,14 +221,14 @@ class DocumentosData
 		}
 
 		$query = Executor::doit($sql);
-		return Model::many($query[0], new DocumentosData());
+		return Model::many($query[0], new DocusData());
 	}
 
 	public static function getAllBy($k, $v)
 	{
 		$sql = "select * from " . self::$tablename . " where $k=\"$v\"";
 		$query = Executor::doit($sql);
-		return Model::many($query[0], new DocumentosData());
+		return Model::many($query[0], new DocusData());
 	}
 
 
@@ -244,6 +236,6 @@ class DocumentosData
 	{
 		$sql = "select * from " . self::$tablename . " where name like '%$q%'";
 		$query = Executor::doit($sql);
-		return Model::many($query[0], new DocumentosData());
+		return Model::many($query[0], new DocusData());
 	}
 }

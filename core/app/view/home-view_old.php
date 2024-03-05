@@ -36,7 +36,7 @@
             <!-- small box -->
             <div class="small-box bg-primary">
               <div class="inner">
-                <h3><?php echo count(DocusData::getAll()); ?></h3>
+                <h3><?php echo count(DocumentosData::getAll()); ?></h3>
 
                 <p><b>D O C U M E N T O S</b></p>
               </div>
@@ -52,7 +52,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3><?php echo count(DocusData::getAllA()); ?></h3>
+                <h3><?php echo count(DocumentosData::getAllA()); ?></h3>
 
                 <p><b>A T E N D I D O S </b></p>
               </div>
@@ -62,31 +62,63 @@
               <a href="./?view=inter&opt=all&g=g" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3><?php echo count(DocumentosData::getAllS()); ?></h3>
 
+                <p><b>S I N - A T E N D E R</b></p>
+              </div>
+              <div class="icon">
+                <!-- <i class="fa fa-users"></i> -->
+                <i class="fas fa-laptop-code"></i>
+                <!-- <i class="fa-solid fa-laptop-code"></i> -->
+                <!-- <i class="fas fa-file-lines"></i> -->
+                <!-- <ion-icon class="close-circle-outline"></ion-icon> -->
+              </div>
+              <a href="./?view=inter&opt=all&g=g" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3><?php echo count(DocusData::getAllP()); ?></h3>
+                <h3><?php echo count(DocumentosData::getAllP()); ?></h3>
 
-                <p><b>P O R | A T E N D E R</b></p>
+                <p><b>P E N D I E N T E S</b></p>
               </div>
               <div class="icon">
                 <i class="fas fa-keyboard"></i>
                 <!-- <i class="ion ion-pie-graph"></i> -->
               </div>
-              <a href="./?view=tester&opt=allP" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="./?view=documentos&opt=all" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-indigo">
+              <div class="inner">
+                <h3><?php echo count(DocumentosData::getAllC()); ?></h3>
 
+                <p><b>C A N C E L A D O </b></p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-file-code"></i>
+                <!-- <i class="fa-solid fa-rectangle-xmark"></i> -->
+              </div>
+              <a href="./?view=inter&opt=all&g=g" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-orange">
               <div class="inner">
-                <h3><?php echo count(DocusData::getAllPre()); ?></h3>
+                <h3><?php echo count(DocumentosData::getAllPre()); ?></h3>
 
                 <p><b>T R A M I T E </b></p>
               </div>
@@ -139,7 +171,7 @@
               <div class="card-body table-responsive">
 
                 <?php
-                $contacts = DocusData::getAllToDay();
+                $contacts = DocumentosData::getAllToDay();
                 if (count($contacts) > 0) : ?>
                   <div>
                     <table class="table table-striped table-bordered table-hover datatable ">
@@ -258,7 +290,7 @@
                 <?php
                 $start  = time() - (60 * 60 * 26 * 30);
                 for ($i = $start; $i <= time(); $i += (60 * 60 * 24)) : ?>
-                  <?php echo (DocusData::getByDate(date('Y-m-d', $i))->cnt); ?>,
+                  <?php echo (DocumentosData::getByDate(date('Y-m-d', $i))->cnt); ?>,
                 <?php endfor; ?>
               ],
             }]

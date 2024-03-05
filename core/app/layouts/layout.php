@@ -104,8 +104,8 @@
           <!-- Notifications Dropdown Menu -->
           <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-              <i class="far fa-user"></i> <span class="text-dark"><?php echo Core::$user->username;
-                                                                  echo Core::$user->username; ?></span>
+              <i class="far fa-user"></i> <span class="text-dark"><?php echo Core::$user->name;
+                                                                  echo " " . Core::$user->lastname; ?></span>
               <!--
           <span class="badge badge-warning navbar-badge">15</span>
         -->

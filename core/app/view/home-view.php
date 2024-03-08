@@ -39,12 +39,47 @@
                 <h3><?php echo count(DocusData::getAll()); ?></h3>
 
                 <p><b>D O C U M E N T O S</b></p>
+                <p><b>T O T A L E S </b></p>
               </div>
               <div class="icon">
                 <i class="fas fa-folder-open"></i>
                 <!-- <i class="fa-solid fa-folder-open"></i> -->
               </div>
-              <a href="./?view=inter&opt=all&g=g" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="./?view=tester&opt=all" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3><?php echo count(DocusData::getAllP()); ?></h3>
+
+                <p><b>P O R </b> </b></p>
+                <p><b> A T E N D E R</b></p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-keyboard"></i>
+                <!-- <i class="ion ion-pie-graph"></i> -->
+              </div>
+              <a href="./?view=tester&opt=allP" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-orange">
+              <div class="inner">
+                <h3><?php echo count(DocusData::getAllPre()); ?></h3>
+
+                <p><b>E N </b></p>
+                <p><b>T R A M I T E </b></p>
+              </div>
+              <div class="icon">
+                <!-- <i class="ion ion-pie-graph"></i> -->
+                <i class="fas fa-wallet"></i>
+              </div>
+              <a href="./?view=tester&opt=allPre" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -54,49 +89,16 @@
               <div class="inner">
                 <h3><?php echo count(DocusData::getAllA()); ?></h3>
 
+                <p><b>D O C U M E N T O S </b></p>
                 <p><b>A T E N D I D O S </b></p>
               </div>
               <div class="icon">
                 <i class="fa fa-thumbs-up"></i>
               </div>
-              <a href="./?view=inter&opt=all&g=g" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="./?view=tester&opt=allA" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3><?php echo count(DocusData::getAllP()); ?></h3>
-
-                <p><b>P O R | A T E N D E R</b></p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-keyboard"></i>
-                <!-- <i class="ion ion-pie-graph"></i> -->
-              </div>
-              <a href="./?view=tester&opt=allP" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-
-
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-orange">
-              <div class="inner">
-                <h3><?php echo count(DocusData::getAllPre()); ?></h3>
-
-                <p><b>T R A M I T E </b></p>
-              </div>
-              <div class="icon">
-                <!-- <i class="ion ion-pie-graph"></i> -->
-                <i class="fas fa-wallet"></i>
-              </div>
-              <a href="./?view=documentos&opt=all" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
         </div>
         <!-- /.row -->
         <!-- Main row -->
@@ -139,7 +141,7 @@
               <div class="card-body table-responsive">
 
                 <?php
-                $contacts = DocusData::getAllToDay();
+                $contacts = DocusData::getAll();
                 if (count($contacts) > 0) : ?>
                   <div>
                     <table class="table table-striped table-bordered table-hover datatable ">
@@ -147,10 +149,10 @@
                         <th>N. Turno y Oficio</th>
                         <th>F. Turno</th>
                         <th>F. Oficio</th>
-                        <th>Asunto</th>
-                        <th>F. Respuesta</th>
-                        <th>Registro</th>
-                        <th>Clasificacion</th>
+                        <th>F. Atencion</th>
+                        <th>Solicitud</th>
+                        <th>F. Compromiso</th>
+                        <th>Estatus</th>
 
                         <th>Acciones</th>
 
@@ -160,12 +162,12 @@
                         $item  = $con->getClasificaciones();
                         $usuario  = $con->getRegistro(); ?>
                         <tr>
-                          <td><?php echo $con->n_turno; ?></td>
-                          <td><?php echo $con->f_e_turno; ?></td>
-                          <td><?php echo $con->f_e_oficio; ?></td>
-                          <td><?php echo $con->asunto; ?></td>
-                          <td><?php echo $con->f_respuesta; ?></td>
-                          <td><?php echo $usuario->name; ?></td>
+                          <td><?php echo $con->r_n_oficio; ?></td>
+                          <td><?php echo $con->r_f_e_oficio; ?></td>
+                          <td><?php echo $con->r_f_r_oficio; ?></td>
+                          <td><?php echo $con->r_f_atencion; ?></td>
+                          <td><?php echo $con->r_solicitud; ?></td>
+                          <td><?php echo $con->d_f_compromiso; ?></td>
 
 
                           <td>
@@ -180,8 +182,8 @@
 
 
                           <td style="width:190px; ">
-                            <a href="./?view=documentos&opt=edit&id=<?php echo $con->id; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a>
-                            <a href="./?action=documentos&opt=del&id=<?php echo $con->id; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar</a>
+                            <a href="./?view=docus&opt=edit&id=<?php echo $con->id; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a>
+                            <a href="./?action=docus&opt=del&id=<?php echo $con->id; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar</a>
                             <script type="text/javascript">
                               $("#item-<?php echo $con->id; ?>").click(function(e) {
                                 e.preventDefault();

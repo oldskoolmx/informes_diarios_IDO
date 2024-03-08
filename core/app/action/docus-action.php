@@ -127,7 +127,36 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "add") {
 	$per->d_instrucciones = $_POST["d_instrucciones"];
 
 
+	/* $per->update(); ?>
+	<script>
+		Swal.fire({
+			title: '¡Éxito!',
+			text: 'Se ha agregado correctamente el nuevo elemento.',
+			icon: 'success',
+			confirmButtonText: 'Aceptar'
+		}).then(function() {
+			window.location = './?view=docus&opt=all';
+		});
+	</script> */
 	$per->update();
+
+	/* echo "<script>
+		Swal.fire({
+			title: 'Good job!',
+			text: 'You clicked the button!',
+			icon: 'success'
+		});
+		</script>";
+	// Si se agregó correctamente, mostrar una alerta
+	Core::sweetalert(); */
+	echo "<script>alert('Editado Correctamente');</script>";
+	echo "<script>
+		Swal.fire({
+			title: 'Good job!',
+			text: 'You clicked the button!',
+			icon: 'success'
+		});
+		</script>";
 	Core::redir("./?view=docus&opt=all");
 } else if (isset($_GET["opt"]) && $_GET["opt"] == "del") {
 	//$grupo = $_GET["g"];

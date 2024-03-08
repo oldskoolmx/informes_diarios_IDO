@@ -97,7 +97,7 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 														<?php
 
 														$now = strtotime($con->d_f_compromiso);
-														$date = strtotime($con->r_f_atencion);
+														$date = strtotime($con->r_f_r_oficio);
 
 														$diff_in_days = floor(($now - $date) / (60 * 60 * 24));
 														echo $diff_in_days . ' Dias';
@@ -130,7 +130,16 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 								</div>
 
 							<?php else : ?>
-								<p class="alert alert-warning">No hay Documentos registrados.</p>
+
+								<div class="info-box mb-3 bg-warning">
+									<span class="info-box-icon"><i class="fas fa-tag"></i></span>
+
+									<div class="info-box-content">
+										<span class="info-box-text"><?php echo $fecha_actual = date("d-m-Y"); ?></span>
+										<span class="info-box-number">NO HAY DOCUMENTOS REGISTRADOS</span>
+									</div>
+									<!-- /.info-box-content -->
+								</div>
 							<?php endif; ?>
 						</div>
 
@@ -160,6 +169,22 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 							</div>
 							<div class="card-body">
 
+
+								<script>
+									function disableWeekends(input) {
+										var fecha = new Date(input.value);
+										var diaSemana = fecha.getDay();
+										if (diaSemana === 6 || diaSemana === 5) {
+											Swal.fire({
+												icon: 'error',
+												title: 'Oops...',
+												text: 'Los fines de semana no están permitidos. Por favor, selecciona otra fecha.'
+											});
+											input.value = '';
+										}
+									}
+								</script>
+
 								<?php $fechahoy = date('Y-m-d'); ?>
 
 								<div class="col-md-12 mb-3">
@@ -169,17 +194,20 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 								</div>
 								<div class="col-md-12 mb-3">
 									<label for="name" class="form-label">FECHA DE ELABORACIÓN DEL OFICIO</label>
-									<input type="date" name="r_f_e_oficio" id="name" class="form-control" placeholder="DD/MM/AAAA" max="<?= $fechahoy ?>" required>
+									<input type="date" name="r_f_e_oficio" id="name1" class="form-control" placeholder="DD/MM/AAAA" max="<?= $fechahoy ?>" onchange="disableWeekends(this)" required>
 
 								</div>
 								<div class="col-md-12 mb-3">
 									<label for="name" class="form-label">FECHA DE RECEPCION DEL OFICIO</label>
-									<input type="date" name="r_f_r_oficio" id="name" class="form-control" placeholder="DD/MM/AAAA" max="<?= $fechahoy ?>" required>
+									<input type="date" name="r_f_r_oficio" id="fecha1" class="form-control" placeholder="DD/MM/AAAA" onchange="disableWeekends(this)" max="<?= $fechahoy ?>" required>
 
 								</div>
+
+
+
 								<div class="col-md-12 mb-3">
 									<label for="name" class="form-label">FECHA DE ATENCION</label>
-									<input type="date" name="r_f_atencion" id="name" class="form-control" placeholder="DD/MM/AAAA" max="<?= $fechahoy ?>" required>
+									<input type="date" name="r_f_atencion" id="name" class="form-control" placeholder="DD/MM/AAAA" onchange="disableWeekends(this)" min="<?= $fechahoy ?>" required>
 
 								</div>
 								<div class="col-md-12 mb-3">
@@ -234,7 +262,7 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 								</div>
 								<div class="col-md-12 mb-3">
 									<label for="name" class="form-label">FECHA COMPROMISO</label>
-									<input type="date" name="d_f_compromiso" id="name" class="form-control" placeholder="DD/MM/AAAA" min="<?= $fechahoy ?>" required>
+									<input type="date" name="d_f_compromiso" id="name" class="form-control" onchange="disableWeekends(this)" placeholder="DD/MM/AAAA" min="<?= $fechahoy ?>" required>
 
 								</div>
 
@@ -326,7 +354,7 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 								</div>
 								<div class="col-md-12 mb-3">
 									<label for="name" class="form-label">FECHA DE ATENCION</label>
-									<input type="date" name="r_f_atencion" id="name" class="form-control" value="<?php echo $con->r_f_atencion; ?>" placeholder="DD/MM/AAAA" max="<?= $fechahoy ?>" required>
+									<input type="date" name="r_f_atencion" id="name" class="form-control" value="<?php echo $con->r_f_atencion; ?>" placeholder="DD/MM/AAAA" min="<?= $fechahoy ?>" required>
 
 								</div>
 								<div class="col-md-12 mb-3">
@@ -391,6 +419,22 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 									<textarea class="form-control" rows="3" name="d_instrucciones" placeholder="INGRESE LAS INSTRUCCIONES"><?php echo $con->d_instrucciones; ?></textarea>
 								</div>
 
+								<div class="col-md-12 mb-3">
+									<label for="area_atencion" class="form-label">CLASIFICACIÓN DE PENDIENTES</label>
+									<?php
+									$cats = ClasificacionesData::getAll();
+
+									if (count($cats) > 0) : ?>
+										<select class="form-control" name="id_estado" required>
+											<option value="">-- SELECCIONE --</option>
+											<?php foreach ($cats as $e) : ?>
+												<option value="<?php echo $e->id; ?>" <?php if ($con->id_estado == $e->id) {
+																							echo "selected";
+																						} ?>><?php echo $e->name; ?></option>
+											<?php endforeach; ?>
+										</select>
+									<?php endif; ?>
+								</div>
 
 								<div class="col-md-12 mb-3">
 									<label for="exampleInputFile">Ingrese el Archivo</label>
@@ -541,4 +585,232 @@ elseif (isset($_GET["opt"]) && $_GET["opt"] == "allP") :
 			</div>
 		</div>
 	</section>
+
+<?php
+elseif (isset($_GET["opt"]) && $_GET["opt"] == "allA") :
+	$contacts = DocusData::getAllA();
+?>
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+
+					<div class="card">
+						<div class="card-header">
+							<h1 class=""><b>D O C U M E N T O S </b><?php //echo $gerencia; 
+																	?></h1>
+							<a href="./?view=tester&opt=new" class="btn btn-primary">R E G I S T R A R</a>
+						</div>
+						<div class="card-body">
+							<?php if (count($contacts) > 0) : ?>
+								<div>
+									<table class="table table-striped table-bordered table-hover datatable responsive">
+										<thead>
+											<th>N. Oficio</th>
+											<th>F. Elaboracion</th>
+											<th>F. Recepcion</th>
+											<th>F. Atencion</th>
+											<th>Solicitud</th>
+											<th>N. Registro</th>
+											<th>N. Folio</th>
+											<th>Estado</th>
+											<th>Dias Faltantes</th>
+
+
+											<th>Acciones</th>
+										</thead>
+										<?php foreach ($contacts as $con) :
+											$item  = $con->getClasificaciones();
+											//$usuario  = $con->getRegistro(); 
+										?>
+											<tr>
+												<td><b>
+														<?php echo $con->r_n_oficio; ?>
+													</b>
+												</td>
+												<td><?php echo $con->r_f_e_oficio; ?></td>
+												<td><?php echo $con->r_f_r_oficio; ?></td>
+												<td><?php echo $con->r_f_atencion; ?></td>
+												<td><?php echo $con->r_solicitud; ?></td>
+												<td><?php echo $con->d_n_registro; ?></td>
+												<td><?php echo $con->d_n_folio; ?></td>
+
+
+
+												<td><b>
+														<?php if ($item->id == 1) :  ?>
+															<span class="badge bg-danger"><?php echo $item->name; ?></span>
+														<?php elseif ($item->id == 2) : ?>
+															<span class="badge bg-success"><?php echo $item->name; ?></span>
+														<?php else : ?>
+															<span class="badge bg-warning"><?php echo $item->name; ?></span>
+														<?php endif; ?>
+													</b>
+												</td>
+
+												<td>
+													<b>
+
+														<?php
+
+														$now = strtotime($con->d_f_compromiso);
+														$date = strtotime($con->r_f_atencion);
+
+														$diff_in_days = floor(($now - $date) / (60 * 60 * 24));
+														echo $diff_in_days . ' Dias';
+
+														?>
+													</b>
+
+												</td>
+
+
+
+
+
+												<td style="width:190px; ">
+													<a href="./?view=documentos&opt=edit&id=<?php echo $con->id; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a>
+													<a href="./?action=documentos&opt=del&id=<?php echo $con->id; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar</a>
+													<script type="text/javascript">
+														$("#item-<?php echo $con->id; ?>").click(function(e) {
+															e.preventDefault();
+															x = confirm("Seguro desea eliminar este elemento?");
+															if (x) {
+																window.location = "./?action=documentos&opt=del&id=<?php echo $con->id; ?>";
+															}
+														});
+													</script>
+												</td>
+											</tr>
+										<?php endforeach; ?>
+									</table>
+								</div>
+
+							<?php else : ?>
+								<p class="alert alert-warning">No hay Documentos registrados.</p>
+							<?php endif; ?>
+						</div>
+
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+<?php
+elseif (isset($_GET["opt"]) && $_GET["opt"] == "allPre") :
+	$contacts = DocusData::getAllPre();
+?>
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+
+					<div class="card">
+						<div class="card-header">
+							<h1 class=""><b>D O C U M E N T O S </b><?php //echo $gerencia; 
+																	?></h1>
+							<a href="./?view=tester&opt=new" class="btn btn-primary">R E G I S T R A R</a>
+						</div>
+						<div class="card-body">
+							<?php if (count($contacts) > 0) : ?>
+								<div>
+									<table class="table table-striped table-bordered table-hover datatable responsive">
+										<thead>
+											<th>N. Oficio</th>
+											<th>F. Elaboracion</th>
+											<th>F. Recepcion</th>
+											<th>F. Atencion</th>
+											<th>Solicitud</th>
+											<th>N. Registro</th>
+											<th>N. Folio</th>
+											<th>Estado</th>
+											<th>Dias Faltantes</th>
+
+
+											<th>Acciones</th>
+										</thead>
+										<?php foreach ($contacts as $con) :
+											$item  = $con->getClasificaciones();
+											//$usuario  = $con->getRegistro(); 
+										?>
+											<tr>
+												<td><b>
+														<?php echo $con->r_n_oficio; ?>
+													</b>
+												</td>
+												<td><?php echo $con->r_f_e_oficio; ?></td>
+												<td><?php echo $con->r_f_r_oficio; ?></td>
+												<td><?php echo $con->r_f_atencion; ?></td>
+												<td><?php echo $con->r_solicitud; ?></td>
+												<td><?php echo $con->d_n_registro; ?></td>
+												<td><?php echo $con->d_n_folio; ?></td>
+
+
+
+												<td><b>
+														<?php if ($item->id == 1) :  ?>
+															<span class="badge bg-danger"><?php echo $item->name; ?></span>
+														<?php elseif ($item->id == 2) : ?>
+															<span class="badge bg-success"><?php echo $item->name; ?></span>
+														<?php else : ?>
+															<span class="badge bg-warning"><?php echo $item->name; ?></span>
+														<?php endif; ?>
+													</b>
+												</td>
+
+												<td>
+													<b>
+
+														<?php
+
+														$now = strtotime($con->d_f_compromiso);
+														$date = strtotime($con->r_f_atencion);
+
+														$diff_in_days = floor(($now - $date) / (60 * 60 * 24));
+														echo $diff_in_days . ' Dias';
+
+														?>
+													</b>
+
+												</td>
+
+
+
+
+
+												<td style="width:190px; ">
+													<a href="./?view=documentos&opt=edit&id=<?php echo $con->id; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a>
+													<a href="./?action=documentos&opt=del&id=<?php echo $con->id; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar</a>
+													<script type="text/javascript">
+														$("#item-<?php echo $con->id; ?>").click(function(e) {
+															e.preventDefault();
+															x = confirm("Seguro desea eliminar este elemento?");
+															if (x) {
+																window.location = "./?action=documentos&opt=del&id=<?php echo $con->id; ?>";
+															}
+														});
+													</script>
+												</td>
+											</tr>
+										<?php endforeach; ?>
+									</table>
+								</div>
+
+							<?php else : ?>
+								<p class="alert alert-warning">No hay Documentos registrados.</p>
+							<?php endif; ?>
+						</div>
+
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+
 <?php endif; ?>

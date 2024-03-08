@@ -54,7 +54,7 @@ class DocusData
 	{
 		//$sql = "update " . self::$tablename . " set r_n_oficio=\"$this->r_n_oficio\",r_f_e_oficio=\"$this->r_f_e_oficio\",r_f_r_oficio=\"$this->r_f_r_oficio\",r_f_atencion=\"$this->r_f_atencion\",r_solicitud=\"$this->r_solicitud\",r_filename=\"$this->r_filename\",r_short_name=\"$this->r_short_name\",$this->updated_at where id=$this->id";
 		$update = date("Y-m-d H:i:s");
-		$sql = "update " . self::$tablename . " set r_n_oficio=\"$this->r_n_oficio\",r_f_e_oficio=\"$this->r_f_e_oficio\",r_f_r_oficio=\"$this->r_f_r_oficio\",r_f_atencion=\"$this->r_f_atencion\",r_solicitud=\"$this->r_solicitud\",r_filename=\"$this->r_filename\",r_short_name=\"$this->r_short_name\",d_n_registro=\"$this->d_n_registro\",d_n_folio=\"$this->d_n_folio\",d_f_compromiso=\"$this->d_f_compromiso\",d_instrucciones=\"$this->d_instrucciones\",filename=\"$this->filename\",short_name=\"$this->short_name\",updated_at=\"$update\" where id=$this->id";
+		$sql = "update " . self::$tablename . " set r_n_oficio=\"$this->r_n_oficio\",r_f_e_oficio=\"$this->r_f_e_oficio\",r_f_r_oficio=\"$this->r_f_r_oficio\",r_f_atencion=\"$this->r_f_atencion\",r_solicitud=\"$this->r_solicitud\",r_filename=\"$this->r_filename\",r_short_name=\"$this->r_short_name\",d_n_registro=\"$this->d_n_registro\",d_n_folio=\"$this->d_n_folio\",d_f_compromiso=\"$this->d_f_compromiso\",d_instrucciones=\"$this->d_instrucciones\",id_estado=\"$this->id_estado\",filename=\"$this->filename\",short_name=\"$this->short_name\",updated_at=\"$update\" where id=$this->id";
 		Executor::doit($sql);
 	}
 
@@ -125,7 +125,7 @@ class DocusData
 	// funcion para mostrar todos los pendientes 
 	public static function getAllP()
 	{
-		$sql = "select * from " . self::$tablename . " where id_estado = 1";
+		$sql = "select * from " . self::$tablename . " where id_estado = 1 and activo = 1";
 		//$sql = "select a.id as id,a.fecha,b.name as id_linea,a.tren,a.modelo,a.motriz,d.name as evento,a.retardo,a.clasificacion,c.name as id_area from person1 a, category b, areas c, eventos d where a.id_linea=b.id and a.id_area=c.id and a.evento=d.id";
 		$query = Executor::doit($sql);
 		return Model::many($query[0], new DocusData());
@@ -139,7 +139,7 @@ class DocusData
 	}
 	public static function getAllPre()
 	{
-		$sql = "select * from " . self::$tablename . " where id_estado = 5";
+		$sql = "select * from " . self::$tablename . " where id_estado = 5 and activo = 1";
 		//$sql = "select a.id as id,a.fecha,b.name as id_linea,a.tren,a.modelo,a.motriz,d.name as evento,a.retardo,a.clasificacion,c.name as id_area from person1 a, category b, areas c, eventos d where a.id_linea=b.id and a.id_area=c.id and a.evento=d.id";
 		$query = Executor::doit($sql);
 		return Model::many($query[0], new DocusData());
@@ -147,7 +147,7 @@ class DocusData
 	// funcion para mostrar todos los atendidos 
 	public static function getAllA()
 	{
-		$sql = "select * from " . self::$tablename . " where id_estado = 2";
+		$sql = "select * from " . self::$tablename . " where id_estado = 2 and activo = 1";
 		//$sql = "select a.id as id,a.fecha,b.name as id_linea,a.tren,a.modelo,a.motriz,d.name as evento,a.retardo,a.clasificacion,c.name as id_area from person1 a, category b, areas c, eventos d where a.id_linea=b.id and a.id_area=c.id and a.evento=d.id";
 		$query = Executor::doit($sql);
 		return Model::many($query[0], new DocusData());

@@ -14,8 +14,11 @@
   <link rel="stylesheet" href="plugins/fullcalendar/main.css">
 
   <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- SweetAlert2 -->
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
   <link rel="stylesheet" href="plugins/jquery/jquery.min.js">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -462,8 +465,12 @@
   </script>
   <!-- Bootstrap 4 -->
   <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
   <!-- bs-custom-file-input -->
   <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+  <script src="plugins/popper/popper.min.js"></script>
 
   <!-- DataTables  & Plugins -->
   <script src="plugins/datatables/jquery.dataTables.min.js"></script>

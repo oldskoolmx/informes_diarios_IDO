@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SisGe | Documentos</title>
+  <title>SDGO | IDO</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -46,6 +46,27 @@
   <script src="plugins/chart.js/Chart.min.js"></script>
   <!-- CUstom CSS-->
   <link rel="stylesheet" href="plugins/styles.css">
+  <style>
+    /* Animación de parpadeo */
+    @keyframes parpadeo {
+      0% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* Aplica la animación al texto */
+    .parpadeo {
+      animation: parpadeo 1s infinite;
+    }
+  </style>
 
 </head>
 
@@ -149,7 +170,7 @@
           <!--
       <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
     -->
-          <span class="brand-text font-weight-light"><b>SisGe</b> Documentos</span>
+          <span class="brand-text font-weight-light"><b>SDGO</b> IDO</span>
         </a>
 
         <!-- Sidebar -->
@@ -219,102 +240,33 @@
                       <p>Clasificaciones</p>
                     </a>
                   </li>
-                  <!-- <li class="nav-item">
-                    <a href="./?view=categories&opt=all" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Lineas</p>
-                    </a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="./?view=eventos&opt=all" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Eventos</p>
-                    </a>
-                  </li> -->
-
-
-
-
                 </ul>
-                <!--               </li>
+              </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-edit"></i>
+                  <i class="nav-icon fas fa-folder-open"></i>
                   <p>
-                    Interrupciones
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="./?view=inter&opt=all&g=g" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Interrupciones</p>
-                    </a>
-                  </li>
-
-                </ul>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="./?view=inter&opt=all&g=g1" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Gerencia 1,3,4 y 12</p>
-                    </a>
-                  </li>
-
-                </ul>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="./?view=inter&opt=all&g=g2" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Gerencia 2,5,6 y B</p>
-                    </a>
-                  </li>
-
-                </ul>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="./?view=inter&opt=all&g=g3" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Gerencia 7,8,9 y A</p>
-                    </a>
-                  </li>
-
-                </ul>
-              </li> -->
-                <!--  <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-table"></i>
-                  <p>
-                    Reportes
+                    IDOS
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
+
                   <li class="nav-item">
-                    <a href="./?view=report" class="nav-link">
+                    <a href="./?view=areastur&opt=all" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Estadisticas</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./?view=reportall" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Estadistica General</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./?view=repfechas" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Reporte por Fechas</p>
+                      <p>Cargar IDO</p>
                     </a>
                   </li>
 
+                  <!-- <li class="nav-item">
+                    <a href="./?view=clasificaciones&opt=all" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Clasificaciones</p>
+                    </a>
+                  </li> -->
                 </ul>
-
-              </li> -->
+              </li>
               <li class="nav-item">
                 <a href="./?view=users&opt=all" class="nav-link">
                   <i class="nav-icon fas fa-users"></i>
@@ -416,7 +368,7 @@
       <div class="login-logo">
         <!-- 
       Cambiar el nombre de inicio de sesion -->
-        <a href="./"><b>SiGes </b>Documentos</a>
+        <a href="./"><b>SDGO </b>IDO</a>
       </div>
       <!-- /.login-logo -->
       <div class="card">

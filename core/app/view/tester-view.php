@@ -354,7 +354,7 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 								</div>
 								<div class="col-md-12 mb-3">
 									<label for="name" class="form-label">FECHA DE ATENCION</label>
-									<input type="date" name="r_f_atencion" id="name" class="form-control" value="<?php echo $con->r_f_atencion; ?>" placeholder="DD/MM/AAAA" min="<?= $fechahoy ?>" required>
+									<input type="date" name="r_f_atencion" id="name" class="form-control" value="<?php echo $con->r_f_atencion; ?>" placeholder="DD/MM/AAAA" min="<?= $con->r_f_atencion ?>" required>
 
 								</div>
 								<div class="col-md-12 mb-3">
@@ -410,7 +410,7 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 								</div>
 								<div class="col-md-12 mb-3">
 									<label for="name" class="form-label">FECHA COMPROMISO</label>
-									<input type="date" name="d_f_compromiso" id="name" class="form-control" value="<?php echo $con->d_f_compromiso; ?>" placeholder="DD/MM/AAAA" min="<?= $fechahoy ?>" required>
+									<input type="date" name="d_f_compromiso" id="name" class="form-control" value="<?php echo $con->d_f_compromiso; ?>" placeholder="DD/MM/AAAA" min="<?= $con->d_f_compromiso ?>" required>
 
 								</div>
 

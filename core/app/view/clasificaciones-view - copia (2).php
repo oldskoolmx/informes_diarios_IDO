@@ -55,46 +55,15 @@
 												<td><?php echo $con->name; ?></td>
 
 												<td style="width:200px; ">
-													<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?php echo $con->id; ?>">
-														<i class="fa fa-edit"></i>Editar
-													</button>
+
+													<a href="./?view=clasificaciones&opt=edit&id=<?php echo $con->id; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a>
 													<a href="./?action=clasificaciones&opt=del&id=<?php echo $con->id; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm" onclick="fntDelPersona(1)"><i class="fa fa-trash"></i> Eliminar</a>
+
 												</td>
 											</tr>
 										<?php endforeach; ?>
 									</table>
 								</div>
-								<?php foreach ($contacts as $con) : ?>
-									<!-- Ventana Modal -->
-									<div class="modal fade" id="editModal<?php echo $con->id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-										<div class="modal-dialog" role="document">
-											<div class="modal-content">
-												<div class="modal-header">
-													<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													<h4 class="modal-title" id="myModalLabel">Editar Categria</h4>
-												</div>
-												<div class="modal-body">
-													<form method="post" id="addproduct" action="./?action=clasificaciones&opt=update" role="form">
-														<input type="hidden" name="_id" value="<?php echo $con->id; ?>">
-														<div class="form-group">
-															<label for="inputEmail1">Categoria</label>
-															<input type="text" name="name" value="<?php echo $con->name; ?>" class="form-control" id="name" placeholder="Categoria">
-														</div>
-														<div class="form-group">
-															<button type="submit" class="btn btn-primary">Actualizar Categria</button>
-														</div>
-													</form>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-												</div>
-											</div>
-										</div>
-									</div>
-
-
-
-								<?php endforeach; ?>
 
 							<?php else : ?>
 								<p class="alert alert-warning">No hay Clasificaciones.</p>

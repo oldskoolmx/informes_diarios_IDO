@@ -46,6 +46,8 @@
   <script src="plugins/chart.js/Chart.min.js"></script>
   <!-- CUstom CSS-->
   <link rel="stylesheet" href="plugins/styles.css">
+
+  <!-- funcion para hacer que parpadee un texto  -->
   <style>
     /* Animación de parpadeo */
     @keyframes parpadeo {
@@ -258,6 +260,12 @@
                       <p>Cargar IDO</p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="./?view=idoall&opt=all" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Ver IDO´s</p>
+                    </a>
+                  </li>
 
                   <!-- <li class="nav-item">
                     <a href="./?view=clasificaciones&opt=all" class="nav-link">
@@ -276,7 +284,7 @@
                   </p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!--  <li class="nav-item">
                 <a href="./?view=docus&opt=all" class="nav-link">
                   <i class="nav-icon fas fa-edit"></i>
                   <p>
@@ -284,7 +292,7 @@
 
                   </p>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a href="./?view=agenda&opt=all" class="nav-link">
                   <i class="nav-icon fas fa-calendar-alt"></i>
@@ -305,7 +313,7 @@
                   </p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!--  <li class="nav-item">
                 <a href="./?view=tester&opt=all" class="nav-link">
                   <i class="nav-icon fas fa-calendar-alt"></i>
 
@@ -314,7 +322,7 @@
 
                   </p>
                 </a>
-              </li>
+              </li> -->
 
               <!--
           <li class="nav-item">

@@ -2,7 +2,7 @@
 
 function connect()
 {
-    return new mysqli("localhost", "root", "", "ido", 3307);
+    return new mysqli("localhost", "root", "", "ido");
 }
 $con = connect();
 

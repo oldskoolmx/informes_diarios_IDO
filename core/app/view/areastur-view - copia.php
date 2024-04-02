@@ -27,11 +27,9 @@
 </section>
 
 
-<?php
-if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
+<?php if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 	$contacts = AreasturData::getAll();
 ?>
-
 	<section class="content">
 		<div class="container-fluid">
 			<div class="row">
@@ -39,7 +37,10 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 
 					<div class="card">
 						<div class="card-header">
+
 							<h1 class=""><b>A R E A S </b></h1>
+							<?php //$prueba = Core::$user->name; echo $prueba; 
+							?>
 							<a href="./?view=areastur&opt=new" class="btn btn-primary">Nueva Area</a>
 						</div>
 						<div class="card-body">
@@ -48,54 +49,35 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 									<table class="table table-bordered datatable">
 										<thead>
 											<th>Area</th>
+
 											<th>Acciones</th>
 										</thead>
-										<tbody>
-											<?php foreach ($contacts as $con) : ?>
-												<tr>
-													<td><?php echo $con->name; ?></td>
-													<td style="width:200px;">
-														<button type="button" class="btn btn-warning btn-sm edit-area-btn" data-toggle="modal" data-target="#editAreaModal" data-area-id="<?php echo $con->id; ?>">
-															<i class="fa fa-edit"></i> Editar
-														</button>
-														<a href="./?action=areastur&opt=del&id=<?php echo $con->id; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm" onclick="fntDelPersona(1)"><i class="fa fa-trash"></i> Eliminar</a>
-													</td>
-												</tr>
-											<?php endforeach; ?>
-										</tbody>
+										<?php foreach ($contacts as $con) : ?>
+											<tr>
+												<td><?php echo $con->name; ?></td>
+
+												<td style="width:200px; ">
+
+													<a href="./?view=areastur&opt=edit&id=<?php echo $con->id; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a>
+													<a href="./?action=areastur&opt=del&id=<?php echo $con->id; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm" onclick="fntDelPersona(1)"><i class="fa fa-trash"></i> Eliminar</a>
+													<script type="text/javascript">
+														$("#item-<?php echo $con->id; ?>").click(function(e) {
+															e.preventDefault();
+															x = confirm("Seguro desea eliminar este elemento?");
+															if (x) {
+																window.location = "./?action=areastur&opt=del&id=<?php echo $con->id; ?>";
+															}
+														});
+													</script>
+												</td>
+											</tr>
+										<?php endforeach; ?>
 									</table>
 								</div>
+
 							<?php else : ?>
 								<p class="alert alert-warning">No hay Areas.</p>
 							<?php endif; ?>
-						</div>
-					</div>
-					<?php //$con = AreasturData::getById($_GET["id"]); 
-					?>
-					<div class="modal fade" id="editAreaModal" tabindex="-1" role="dialog" aria-labelledby="editAreaModalLabel" aria-hidden="true">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="editAreaModalLabel">Editar Area</h5>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body">
-									<form action="./?action=areastur&opt=update" method="post">
-										<!-- <input type="hidden" name="area_id" id="editAreaId" value=""> -->
-										<input type="hidden" name="_id" id="editAreaId" value="<?php echo $con->id; ?>">
-										<div class="form-group">
-											<label for="areaName">Nombre del Area:</label>
-											<input type="text" class="form-control" id="areaName" name="name" required>
-										</div>
-										<button type="submit" class="btn btn-primary">Guardar Cambios</button>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-								</div>
-							</div>
 						</div>
 					</div>
 
@@ -103,22 +85,6 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 			</div>
 		</div>
 	</section>
-
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-	<script>
-		$(document).ready(function() {
-			// Handle edit area button click
-			$('.edit-area-btn').click(function() {
-				var areaId = $(this).data('areaId');
-				$('#editAreaId').val(areaId);
-
-				var areaName = $(this).closest('tr').find('td:first').text();
-				$('#areaName').val(areaName);
-			});
-		});
-	</script>
 <?php elseif (isset($_GET["opt"]) && $_GET["opt"] == "new") : ?>
 	<section class="content">
 		<div class="container-fluid">

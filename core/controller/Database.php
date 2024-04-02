@@ -8,13 +8,12 @@ class Database
 		$this->user = "root";
 		$this->pass = "";
 		$this->host = "localhost";
-		$this->ddbb = "gestion";
-		$this->port = 3307;
+		$this->ddbb = "ido";
 	}
 
 	function connect()
 	{
-		$con = new mysqli($this->host, $this->user, $this->pass, $this->ddbb, $this->port);
+		$con = new mysqli($this->host, $this->user, $this->pass, $this->ddbb);
 		return $con;
 	}
 

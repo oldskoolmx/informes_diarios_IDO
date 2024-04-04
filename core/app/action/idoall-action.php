@@ -12,26 +12,23 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "add") {
         echo "<div class='alert alert-danger'>No Area Selected</div>";
     }*/
 	$per->add();
-?>
-	<script type="text/javascript">
-		Swal.fire(
-			'Good job!',
-			'You clicked the button!',
-			'success'
-		);
-	</script>
 
-<?php
 	Core::redir("./?view=idoall&opt=all");
 } else if (isset($_GET["opt"]) && $_GET["opt"] == "update") {
 
 	$per = IdoAllData::getById($_POST["_id"]);
-	$per->clasificacion = $_POST["name"];
+	$per->clasificacion = $_POST["clasificacion"];
 	$per->update();
 	Core::redir("./?view=idoall&opt=all");
+} else if (isset($_GET["opt"]) && $_GET["opt"] == "updateC") {
+
+	$per = IdoAllData::getById($_POST["_id"]);
+	$per->clasificacion = $_POST["clasificacion"];
+	$fecha = $per->fecha;
+	$per->update();
+	Core::redir("./?view=idoall&opt=allF&fecha=$fecha");
 } else if (isset($_GET["opt"]) && $_GET["opt"] == "del") {
 	$per = IdoAllData::getById($_GET["id"]);
 	$per->del();
 	Core::redir("./?view=clasificaciones&opt=all");
 }
-?>

@@ -38,7 +38,7 @@ class IdoAllData
 
 	public function update()
 	{
-		$sql = "update " . self::$tablename . " set clasificacion=\"$this->name\" where id=$this->id";
+		$sql = "update " . self::$tablename . " set clasificacion=\"$this->clasificacion\" where id=$this->id";
 		Executor::doit($sql);
 	}
 
@@ -56,7 +56,7 @@ class IdoAllData
 
 	public static function getById($id)
 	{
-		$sql = "select * from " . self::$tablename . " where fecha='$id'";
+		$sql = "select * from " . self::$tablename . " where id='$id'";
 		$query = Executor::doit($sql);
 		return Model::one($query[0], new IdoAllData());
 	}

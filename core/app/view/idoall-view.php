@@ -63,44 +63,46 @@
 												<td><?php echo $con->retardo; ?></td>
 
 												<td style="width:200px; ">
-
 													<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?php echo $con->id; ?>">
-														<i class="fa fa-edit"></i>Clasificar
+														<i class="fa fa-edit"></i> Clasificar
 													</button>
-													<a href="./?action=areastur&opt=del&id=<?php echo $con->id; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm" onclick="fntDelPersona(1)"><i class="fa fa-trash"></i> Eliminar</a>
-
+													<a href="./?view=idoall&opt=edit&id=<?php echo $con->id; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a>
+													<a href="./?action=idoall&opt=del&id=<?php echo $con->id; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm" onclick="fntDelPersona(1)"><i class="fa fa-trash"></i> Eliminar</a>
 												</td>
 											</tr>
 										<?php endforeach; ?>
 									</table>
 								</div>
-								<?php $conn = IdoAllData::getById($_GET["id"]); ?>
-								<div class="modal fade" id="editModal<?php echo $conn->id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-												<h4 class="modal-title" id="myModalLabel">Clasificar Averia</h4>
-											</div>
-											<div class="modal-body">
-												<form method="post" id="addproduct" action="./?action=idoall&opt=update" role="form">
-													<input type="hidden" name="_id" value="<?php echo $conn->id; ?>">
-													<div class="form-group">
-														<label for="inputEmail1">Averia</label>
-														<input type="text" name="name" value="<?php echo $conn->retardo; ?>" class="form-control" id="name" placeholder="Ingresa la Clasificaion">
-													</div>
-													<div class="form-group">
-														<button type="submit" class="btn btn-primary">C L A S I F I C A R</button>
-													</div>
-												</form>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary" data-dismiss="modal">C E R R A R</button>
+								<?php foreach ($contacts as $con) :
+								?>
+									<!-- Ventana Modal -->
+									<div class="modal fade" id="editModal<?php echo $con->id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													<h4 class="modal-title" id="myModalLabel">Clasificar Averia</h4>
+												</div>
+												<div class="modal-body">
+													<form method="post" id="addproduct" action="./?action=idoall&opt=update" role="form">
+														<input type="hidden" name="_id" value="<?php echo $con->id; ?>">
+														<div class="form-group">
+															<label for="inputEmail1">Categoria</label>
+															<input type="text" name="clasificacion" value="<?php echo $con->clasificacion; ?>" class="form-control" id="name" placeholder="Categoria">
+														</div>
+														<div class="form-group">
+															<button type="submit" class="btn btn-primary">C L A S I F I C A R</button>
+														</div>
+													</form>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
 
+								<?php endforeach; ?>
 							<?php else : ?>
 								<p class="alert alert-warning">No hay Areas.</p>
 							<?php endif; ?>
@@ -223,16 +225,16 @@
 
 					<div class="card">
 						<div class="card-header">
-							<h1 class="">Editar Area</h1>
+							<h1 class="">Clasificar Averia</h1>
 							<a href="./?view=areastur&opt=all" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Regresar</a>
 						</div>
 						<div class="card-body">
 
-							<form method="post" action="./?action=areastur&opt=update">
+							<form method="post" action="./?action=idoall&opt=update">
 								<input type="hidden" name="_id" value="<?php echo $con->id; ?>">
 								<div class="mb-3">
-									<label for="name" class="form-label">Area</label>
-									<input type="text" name="name" class="form-control" value="<?php echo $con->name; ?>" id="name" placeholder="Ingresa la Area" required>
+									<label for="name" class="form-label">Clasificacion</label>
+									<input type="text" name="clasificacion" class="form-control" value="<?php echo $con->clasificacion; ?>" id="name" placeholder="Ingresa la Area" required>
 								</div>
 
 
@@ -247,7 +249,7 @@
 	</section>
 
 <?php elseif (isset($_GET["opt"]) && $_GET["opt"] == "allF") :
-	$contactss = IdoAllData::getByFecha($_GET["fecha"]);
+	$contacts = IdoAllData::getByFecha($_GET["fecha"]);
 ?>
 	<section class="content">
 		<div class="container-fluid">
@@ -263,7 +265,7 @@
 							<a href="./?view=idoall&opt=new" class="btn btn-primary">Nueva Area</a>
 						</div>
 						<div class="card-body">
-							<?php if (count($contactss) > 0) : ?>
+							<?php if (count($contacts) > 0) : ?>
 								<div>
 									<table class="table table-bordered datatable">
 										<thead>
@@ -274,7 +276,7 @@
 											<th>Clasificacion</th>
 											<th>Accion</th>
 										</thead>
-										<?php foreach ($contactss as $con) : ?>
+										<?php foreach ($contacts as $con) : ?>
 											<tr>
 												<td><?php echo $con->linea; ?></td>
 												<td><?php echo $con->hora; ?></td>
@@ -290,7 +292,7 @@
 										<?php endforeach; ?>
 									</table>
 								</div>
-								<?php foreach ($contactss as $con) : ?>
+								<?php foreach ($contacts as $con) : ?>
 									<!-- Ventana Modal -->
 									<div class="modal fade" id="editModal<?php echo $con->id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 										<div class="modal-dialog" role="document">
@@ -300,11 +302,11 @@
 													<h4 class="modal-title" id="myModalLabel">Clasificar Averia</h4>
 												</div>
 												<div class="modal-body">
-													<form method="post" id="addproduct" action="./?action=idoall&opt=update" role="form">
+													<form method="post" id="addproduct" action="./?action=idoall&opt=updateC" role="form">
 														<input type="hidden" name="_id" value="<?php echo $con->id; ?>">
 														<div class="form-group">
-															<label for="inputEmail1">Averia</label>
-															<input type="text" name="name" value="<?php echo $con->retardo; ?>" class="form-control" id="name" placeholder="Ingresa la Clasificaion">
+															<label for="inputEmail1">Tipo de Averia</label>
+															<input type="text" name="clasificacion" value="<?php echo $con->clasificacion; ?>" class="form-control" id="name" placeholder="Ingresa la Clasificaion">
 														</div>
 														<div class="form-group">
 															<button type="submit" class="btn btn-primary">C L A S I F I C A R</button>

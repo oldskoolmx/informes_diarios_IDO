@@ -232,14 +232,14 @@
                   <li class="nav-item">
                     <a href="./?view=areastur&opt=all" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Areas Turnadas</p>
+                      <p>Areas</p>
                     </a>
                   </li>
 
                   <li class="nav-item">
                     <a href="./?view=clasificaciones&opt=all" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Clasificaciones</p>
+                      <p>Averias</p>
                     </a>
                   </li>
                 </ul>

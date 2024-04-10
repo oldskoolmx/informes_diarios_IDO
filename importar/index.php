@@ -62,7 +62,9 @@ date_default_timezone_set("America/Lima");
 				$hora_1 = gmdate("H:i:s", $hora);
 				$_DATOS_EXCEL[$i]['hora'] = $hora_1;
 
-				$_DATOS_EXCEL[$i]['descripcion'] = $objPHPExcel->getActiveSheet()->getCell('C' . $i)->getCalculatedValue();
+
+
+				$texto = $_DATOS_EXCEL[$i]['descripcion'] = $objPHPExcel->getActiveSheet()->getCell('C' . $i)->getCalculatedValue();
 				$_DATOS_EXCEL[$i]['retardo'] = $objPHPExcel->getActiveSheet()->getCell('D' . $i)->getCalculatedValue();
 
 				$fecha = PHPExcel_Shared_Date::ExcelToPHP($objPHPExcel->getActiveSheet()->getCell('E' . $i)->getCalculatedValue());
@@ -76,13 +78,27 @@ date_default_timezone_set("America/Lima");
 				$_DATOS_EXCEL[$i]['id_usuario'] = 1;
 				$_DATOS_EXCEL[$i]['id_estado'] = 1;
 				//$_DATOS_EXCEL[$i]['email'] = $objPHPExcel->getActiveSheet()->getCell('F' . $i)->getCalculatedValue();
+
+				// funcion para guardar las vueltas perdidas
+				$posicionPierde = strpos($texto, "Pierde");
+				$subcadena = substr($texto, $posicionPierde);
+				if (preg_match("/[\d\.]+ vueltas/", $subcadena, $matches)) {
+					// Extraer solo el número de vueltas encontrado
+					$vueltasPerdidas = preg_replace('/[^0-9.]/', '', $matches[0]);
+					// Imprimir el resultado
+					$_DATOS_EXCEL[$i]['vueltas'] = $vueltasPerdidas;
+				} else {
+					// Si no se encuentra ninguna coincidencia
+					$vueltasPerdidas = 0;
+					$_DATOS_EXCEL[$i]['vueltas'] = $vueltasPerdidas;
+				}
 				$_DATOS_EXCEL[$i]['activo'] = 1;
 			}
 			$errores = 0;
 
 
 			foreach ($_DATOS_EXCEL as $campo => $valor) {
-				$sql = "INSERT INTO idos  (linea,hora,descripcion,retardo,fecha,created_at,id_usuario,id_estado,activo)  VALUES ('";
+				$sql = "INSERT INTO idos  (linea,hora,descripcion,retardo,fecha,created_at,id_usuario,id_estado,vueltas,activo)  VALUES ('";
 				foreach ($valor as $campo2 => $valor2) {
 					// Escapar comillas simples en el valor antes de insertarlo en la base de datos
 					$valor2 = mysqli_real_escape_string($con, $valor2);

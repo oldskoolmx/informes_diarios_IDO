@@ -53,6 +53,7 @@
 											<th>Hora</th>
 											<th>Descripcion</th>
 											<th>Retardo</th>
+											<th>V. Perdidas</th>
 											<th>Acciones</th>
 										</thead>
 										<?php foreach ($contacts as $con) : ?>
@@ -61,12 +62,14 @@
 												<td><?php echo $con->hora; ?></td>
 												<td><?php echo $con->descripcion; ?></td>
 												<td><?php echo $con->retardo; ?></td>
+												<td><b><?php echo $con->vueltas; ?></b></td>
 
 												<td style="width:200px; ">
 													<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?php echo $con->id; ?>">
 														<i class="fa fa-edit"></i> Clasificar
 													</button>
-													<a href="./?view=idoall&opt=edit&id=<?php echo $con->id; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a>
+													<!-- <a href="./?view=idoall&opt=edit&id=<?php //echo $con->id; 
+																								?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a> -->
 													<a href="./?action=idoall&opt=del&id=<?php echo $con->id; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm" onclick="fntDelPersona(1)"><i class="fa fa-trash"></i> Eliminar</a>
 												</td>
 											</tr>

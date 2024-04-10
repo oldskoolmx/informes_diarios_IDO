@@ -37,21 +37,25 @@
 
 					<div class="card">
 						<div class="card-header">
-							<h1 class=""><b>C L A S I F I C A C I O N E S </b></h1> <?php //$prueba = Core::$user->name; echo $prueba; 
-																					?>
-							<a href="./?view=clasificaciones&opt=new" class="btn btn-primary">Nueva Clasificacion</a>
+							<h1 class=""><b> A V E R I A S </b></h1> <?php //$prueba = Core::$user->name; echo $prueba; 
+																		?>
+							<a href="./?view=clasificaciones&opt=new" class="btn btn-primary">Nueva Averias</a>
 						</div>
 						<div class="card-body">
 							<?php if (count($contacts) > 0) : ?>
 								<div>
 									<table class="table table-bordered datatable">
 										<thead>
-											<th>Clasificaciones</th>
+											<th>Area</th>
+											<th>Averia</th>
 
 											<th>Acciones</th>
 										</thead>
-										<?php foreach ($contacts as $con) : ?>
+										<?php foreach ($contacts as $con) :
+											$areas = $con->getItem();
+										?>
 											<tr>
+												<td><?php echo $areas->name; ?></td>
 												<td><?php echo $con->name; ?></td>
 
 												<td style="width:200px; ">
@@ -118,14 +122,32 @@
 
 					<div class="card">
 						<div class="card-header">
-							<h1 class="">Nueva Clasificacion</h1>
+							<h1 class=""><b> C L A S I F I C A C I O N </b></h1>
 							<a href="./?view=clasificaciones&opt=all" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Regresar</a>
 						</div>
 						<div class="card-body">
 
 							<form method="post" action="./?action=clasificaciones&opt=add">
+
 								<div class="mb-3">
-									<label for="name" class="form-label">Nombre de la clasificacion</label>
+									<label for="area_atencion" class="form-label">Area de Atencion</label>
+									<?php
+									$cats = AreasturData::getAll();
+									?>
+									<?php if (count($cats) > 0) : ?>
+										<select name="id_area" class="form-control" required>
+											<option value="">- - S E L E C C I O N E - -</option>
+											<?php foreach ($cats as $cat) : ?>
+												<option value="<?= $cat->id; ?>"><?= $cat->name; ?></option>
+											<?php endforeach; ?>
+										</select>
+									<?php endif; ?>
+								</div>
+
+
+
+								<div class="mb-3">
+									<label for="name" class="form-label">Averia</label>
 									<input type="text" name="name" class="form-control" id="name" placeholder="Ingresa la Clasificacion" required>
 								</div>
 

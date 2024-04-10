@@ -13,12 +13,16 @@ class ClasificacionesData
 		$this->created_at = "NOW()";
 	}
 
+	public function getItem()
+	{
+		return AreasturData::getById($this->id_area);
+	}
 	public function add()
 	{
 
 		$prueba = Core::$user->id;
-		$sql = "insert into " . self::$tablename . " (name,id_username,created_at) ";
-		$sql .= "value (\"$this->name\",\"$prueba\",$this->created_at)";
+		$sql = "insert into " . self::$tablename . " (name,id_area,id_username,created_at) ";
+		$sql .= "value (\"$this->name\",\"$this->id_area\",\"$prueba\",$this->created_at)";
 		Executor::doit($sql);
 	}
 

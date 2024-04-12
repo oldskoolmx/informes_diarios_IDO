@@ -20,7 +20,7 @@ $sql = "SELECT * FROM idos";
 $result = $conn->query($sql);
 
 echo "<table border='1'>";
-echo "<tr><th>Id</th><th>Linea</th><th>Hora</th><th>Texto</th><th>Total de Vueltas Perdidas</th></tr>";
+echo "<tr><th>Id</th><th>Hora</th><th>Texto</th><th>Total de Vueltas Perdidas</th></tr>";
 
 $totalVueltasPerdidas = 0; // Variable para almacenar el total de vueltas perdidas
 
@@ -37,30 +37,18 @@ if ($result->num_rows > 0) {
 
         // Obtener la subcadena a partir de la posición de "Pierde"
         $subcadena = substr($texto, $posicionPierde);
-        //if (preg_match("/\b\d*\.?\d+\s?vuelta?/i", $texto, $matches)) {
+
         // Utilizar expresiones regulares para encontrar el número de vueltas
-        /*  if (preg_match("/[\d\.]+ vuelta/", $subcadena, $matches)) {
-            // Extraer solo el número de vueltas encontrado
-            $vueltasPerdidas = floatval(preg_replace('/[^0-9.]/', '', $matches[0]));
-            // Sumar las vueltas perdidas al total
-            $totalVueltasPerdidas +=  $vueltasPerdidas;
-
-            // Mostrar el texto y el total de vueltas perdidas en la tabla
-            echo "<tr><td>$id</td><td>$linea</td><td>$hora</td><td>$texto</td><td>$vueltasPerdidas vueltas</td></tr>";
-        }
-    } */
-
-        if (preg_match("/(?:\d+)?\.?\d+ vuelta/i", $subcadena, $matches)) {
+        if (preg_match("/[\d\.]+ vuelta/i", $subcadena, $matches)) {
             // Extraer solo el número de vueltas encontrado
             $vueltasPerdidas = floatval(preg_replace('/[^0-9.]/', '', $matches[0]));
             // Sumar las vueltas perdidas al total
             $totalVueltasPerdidas += $vueltasPerdidas;
 
             // Mostrar el texto y el total de vueltas perdidas en la tabla
-            echo "<tr><td>$id</td><td>$linea</td><td>$hora</td><td>$texto</td><td>" . $vueltasPerdidas . " vueltas</td></tr>";
+            echo "<tr><td>$id</td><td>$linea</td><td>$hora</td><td>$texto</td><td>$vueltasPerdidas vueltas</td></tr>";
         }
     }
-
 
     // Imprimir el total de vueltas perdidas después de terminar de iterar
     echo "<tr><td><b>Total</b></td><td>$totalVueltasPerdidas vueltas</td></tr>";

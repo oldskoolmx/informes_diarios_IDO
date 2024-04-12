@@ -1,7 +1,7 @@
 <?php
 
 // Texto completo
-$texto = "Tren 10 M-0690/0691 NM-16, es circulado desalojado de la Estación Isabel la Católica a la Terminal Pantitlán, donde se retira, por no contarse con Trenes disponibles para la operación, a través del CDV-83 de la zona de maniobras de Zaragoza, realizándose el comando para el movimiento del Aparato de Vía A23CZAR desde la IHM del Equipo ATS instalado en el TCO del PCC-C5, quedando debidamente estacionado en la posición G-7.";
+$texto = "Se establece el Servicio Provisional SP-1 de la Terminal Provisional Pino Suárez a la Terminal Pantitlán, hasta nuevo aviso, a fin de satisfacer la demanda del servicio, debido a la Modernización Integral de Trenes. Sistema de Control y Vías de Línea 1, efectuándolo 10 Trenes, dejándose de realizar .50 vueltas.";
 
 // Buscar la posición de la palabra "Pierde"
 $posicionPierde = strpos($texto, "Pierde");

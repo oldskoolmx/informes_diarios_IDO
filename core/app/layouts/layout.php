@@ -313,6 +313,36 @@
                   </p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="./?view=calendario_1&opt=all" class="nav-link">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
+
+                  <p>
+                    Pruebas
+
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./?view=calendario_2&opt=all" class="nav-link">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
+
+                  <p>
+                    Pruebas 2
+
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./?view=calendario_3&opt=all" class="nav-link">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
+
+                  <p>
+                    Pruebas 3
+
+                  </p>
+                </a>
+              </li>
               <!--  <li class="nav-item">
                 <a href="./?view=tester&opt=all" class="nav-link">
                   <i class="nav-icon fas fa-calendar-alt"></i>

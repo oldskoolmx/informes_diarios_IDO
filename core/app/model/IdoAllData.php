@@ -74,6 +74,12 @@ class IdoAllData
 		$query = Executor::doit($sql);
 		return Model::many($query[0], new IdoAllData());
 	}
+	public static function getAllL($linea)
+	{
+		$sql = "select * from " . self::$tablename . " where linea='$linea'";
+		$query = Executor::doit($sql);
+		return Model::many($query[0], new IdoAllData());
+	}
 
 	public static function getByFecha($fecha)
 	{

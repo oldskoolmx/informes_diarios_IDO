@@ -19,7 +19,8 @@
   <!-- SweetAlert2 -->
 
   <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
-  <link rel="stylesheet" href="plugins/jquery/jquery.min.js">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- <link rel="stylesheet" href="plugins/jquery/jquery.min.js"> -->
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
@@ -339,6 +340,26 @@
 
                   <p>
                     Pruebas 3
+
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./?view=calendario_4&opt=all" class="nav-link">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
+
+                  <p>
+                    Pruebas 4
+
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./?view=calendario_5&opt=all" class="nav-link">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
+
+                  <p>
+                    Pruebas 5
 
                   </p>
                 </a>

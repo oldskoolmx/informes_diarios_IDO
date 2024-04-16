@@ -3,7 +3,7 @@
 if (isset($_GET["opt"]) && $_GET["opt"] == "add") {
 
 	$per = new ClasificacionesData();
-	$per->id_area = $_POST["id_area"];
+	$per->client_id = $_POST["client_id"];
 	$per->name = $_POST["name"];
 	/*if($per->name==""){
         echo "<div class='alert alert-danger'>No Area Selected</div>";

@@ -15,14 +15,14 @@ class ClasificacionesData
 
 	public function getItem()
 	{
-		return AreasturData::getById($this->id_area);
+		return AreasturData::getById($this->client_id);
 	}
 	public function add()
 	{
 
 		$prueba = Core::$user->id;
-		$sql = "insert into " . self::$tablename . " (name,id_area,id_username,created_at) ";
-		$sql .= "value (\"$this->name\",\"$this->id_area\",\"$prueba\",$this->created_at)";
+		$sql = "insert into " . self::$tablename . " (name,client_id,id_username,created_at) ";
+		$sql .= "value (\"$this->name\",\"$this->client_id\",\"$prueba\",$this->created_at)";
 		Executor::doit($sql);
 	}
 
@@ -73,6 +73,14 @@ class ClasificacionesData
 	public static function getAll()
 	{
 		$sql = "select * from " . self::$tablename;
+		$query = Executor::doit($sql);
+		return Model::many($query[0], new ClasificacionesData());
+	}
+
+
+	public static function getAllByClient($id)
+	{
+		$sql = "select * from " . self::$tablename . " where client_id=$id";
 		$query = Executor::doit($sql);
 		return Model::many($query[0], new ClasificacionesData());
 	}

@@ -135,7 +135,7 @@
 									$cats = AreasturData::getAll();
 									?>
 									<?php if (count($cats) > 0) : ?>
-										<select name="id_area" class="form-control" required>
+										<select name="client_id" class="form-control" required>
 											<option value="">- - S E L E C C I O N E - -</option>
 											<?php foreach ($cats as $cat) : ?>
 												<option value="<?= $cat->id; ?>"><?= $cat->name; ?></option>

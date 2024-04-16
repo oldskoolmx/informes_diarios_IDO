@@ -53,65 +53,54 @@ function generarTabla($contacts)
   return $tabla;
 }
 
-function generarContenidoPestanas($contacts)
+function generarContenidoPestanas()
 {
   $contenidoPestanas = '';
   // Pestaña Linea 1
+  $linea1Contacts = IdoAllData::getAllL(1);
   $contenidoPestanas .= '<div class="tab-pane fade show active" id="custom-tabs-three-home" role="tabpanel" aria-labelledby="custom-tabs-three-home-tab">';
-  $contenidoPestanas .= generarTabla($contacts);
+  $contenidoPestanas .= generarTabla($linea1Contacts);
   $contenidoPestanas .= '</div>';
 
   // Pestaña Linea 2
+  $linea2Contacts = IdoAllData::getAllL(2);
   $contenidoPestanas .= '<div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel" aria-labelledby="custom-tabs-three-profile-tab">';
-  $contenidoPestanas .= generarTabla($contacts);
+  $contenidoPestanas .= generarTabla($linea2Contacts);
   // Puedes agregar contenido adicional aquí, como otra tabla o cualquier otro elemento HTML
   $contenidoPestanas .= '</div>';
 
   // Pestaña Linea 3
+  $linea3Contacts = IdoAllData::getAllL(3);
   $contenidoPestanas .= '<div class="tab-pane fade" id="custom-tabs-three-messages" role="tabpanel" aria-labelledby="custom-tabs-three-messages-tab">';
-  $contenidoPestanas .= generarTabla($contacts);
+  $contenidoPestanas .= generarTabla($linea3Contacts);
   // Puedes agregar contenido adicional aquí, como otra tabla o cualquier otro elemento HTML
   $contenidoPestanas .= '</div>';
+  // Pestaña Linea 4
+
 
   return $contenidoPestanas;
 }
 
 // Uso:
-$linea = 1;
-$contacts = IdoAllData::getAllL($linea);
-$contenidoPestanas = generarContenidoPestanas($contacts);
+$contenidoPestanas = generarContenidoPestanas();
 ?>
 
-<!-- Contenido de las pestañas -->
-<!-- <section class="content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <div class="card card-primary card-outline card-tabs">
-          <div class="card-header p-0 pt-1 border-bottom-0">
-            <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="true">Linea 1</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill" href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile" aria-selected="false">Linea 2</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill" href="#custom-tabs-three-messages" role="tab" aria-controls="custom-tabs-three-messages" aria-selected="false">Linea 3</a>
-              </li>
-            </ul>
-          </div>
-          <div class="card-body">
-            <div class="tab-content" id="custom-tabs-three-tabContent">
-              <?php //echo $contenidoPestanas; 
-              ?>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="container mt-5">
+  <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="true">Linea 1</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill" href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile" aria-selected="false">Linea 2</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill" href="#custom-tabs-three-messages" role="tab" aria-controls="custom-tabs-three-messages" aria-selected="false">Linea 3</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="custom-tabs-three-tabContent">
+    <?php echo $contenidoPestanas; ?>
   </div>
-</section> -->
+</div>
 
 <section class="content">
   <div class="container-fluid">

@@ -68,8 +68,7 @@
 													<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?php echo $con->id; ?>">
 														<i class="fa fa-edit"></i> Clasificar
 													</button>
-													<!-- <a href="./?view=idoall&opt=edit&id=<?php //echo $con->id; 
-																								?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a> -->
+													<a href="./?view=idoall&opt=edit&id=<?php echo $con->id; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a>
 													<a href="./?action=idoall&opt=del&id=<?php echo $con->id; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm" onclick="fntDelPersona(1)"><i class="fa fa-trash"></i> Eliminar</a>
 												</td>
 											</tr>
@@ -89,6 +88,32 @@
 												<div class="modal-body">
 													<form method="post" id="addproduct" action="./?action=idoall&opt=update" role="form">
 														<input type="hidden" name="_id" value="<?php echo $con->id; ?>">
+
+														<!-- primer combobox para seleccionar el area -->
+														<div class="form-group">
+															<label>Areas</label>
+															<select name="client_id" id="client_id_<?php echo $con->id; ?>" required class="form-control">
+																<option value="">-- SELECCIONE AREA --</option>
+																<?php foreach (AreasturData::getAll() as $cli) : ?>
+																	<option value="<?php echo $cli->id; ?>"><?php echo $cli->name; ?></option>
+																<?php endforeach; ?>
+															</select>
+														</div>
+														<div class="form-group">
+															<label>Averia</label>
+															<select name="item_id" id="item_id_<?php echo $con->id; ?>" required class="form-control">
+															</select>
+														</div>
+														<script type="text/javascript">
+															jQuery(document).ready(function() {
+																jQuery("#client_id_<?php echo $con->id; ?>").change(function() {
+																	jQuery.get("./?action=getitems", "client_id=" + jQuery("#client_id_<?php echo $con->id; ?>").val(), function(data) {
+																		console.log(data);
+																		jQuery("#item_id_<?php echo $con->id; ?>").html(data);
+																	});
+																});
+															});
+														</script>
 														<div class="form-group">
 															<label for="inputEmail1">Categoria</label>
 															<input type="text" name="clasificacion" value="<?php echo $con->clasificacion; ?>" class="form-control" id="name" placeholder="Categoria">
@@ -114,59 +139,7 @@
 
 				</div>
 
-				<!-- prueba de ventana modal -->
-				<div class="card card-primary card-outline">
-					<div class="card-header">
-						<h3 class="card-title">
-							<i class="fas fa-edit"></i>
-							Modal Examples
-						</h3>
-					</div>
-					<div class="card-body">
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
-							Launch Default Modal
-						</button>
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-primary">
-							Launch Primary Modal
-						</button>
-						<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal-secondary">
-							Launch Secondary Modal
-						</button>
-						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
-							Launch Info Modal
-						</button>
-						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger">
-							Launch Danger Modal
-						</button>
-						<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-warning">
-							Launch Warning Modal
-						</button>
-						<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-success">
-							Launch Success Modal
-						</button>
-						<br />
-						<br />
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-sm">
-							Launch Small Modal
-						</button>
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg">
-							Launch Large Modal
-						</button>
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-xl">
-							Launch Extra Large Modal
-						</button>
-						<br />
-						<br />
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-overlay">
-							Launch Modal with Overlay
-						</button>
-						<div class="text-muted mt-3">
-							Instructions for how to use modals are available on the
-							<a href="https://getbootstrap.com/docs/4.4/components/modal/">Bootstrap documentation</a>
-						</div>
-					</div>
-					<!-- /.card -->
-				</div>
+
 
 
 			</div>
@@ -235,6 +208,32 @@
 
 							<form method="post" action="./?action=idoall&opt=update">
 								<input type="hidden" name="_id" value="<?php echo $con->id; ?>">
+								<div class="form-group">
+									<label>Areas</label>
+									<select name="client_id" id="client_id" required class="form-control">
+										<option value="">-- SELECCIONE AREA --</option>
+										<?php foreach (AreasturData::getAll() as $cli) : ?>
+											<option value="<?php echo $cli->id; ?>"><?php echo $cli->name; ?></option>
+										<?php endforeach; ?>
+									</select>
+								</div>
+								<div class="form-group">
+									<label>Averia</label>
+									<select name="item_id" id="item_id" required class="form-control">
+
+									</select>
+								</div>
+								<script type="text/javascript">
+									jQuery(document).ready(function() {
+										jQuery("#client_id").change(function() {
+											jQuery.get("./?action=getitems", "client_id=" + jQuery("#client_id").val(), function(data) {
+												console.log(data);
+												jQuery("#item_id").html(data);
+											});
+
+										});
+									});
+								</script>
 								<div class="mb-3">
 									<label for="name" class="form-label">Clasificacion</label>
 									<input type="text" name="clasificacion" class="form-control" value="<?php echo $con->clasificacion; ?>" id="name" placeholder="Ingresa la Area" required>

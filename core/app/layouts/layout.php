@@ -170,9 +170,9 @@
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="./" class="brand-link">
-          <!--
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    -->
+
+          <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+
           <span class="brand-text font-weight-light"><b>SDGO</b> IDO</span>
         </a>
 
@@ -182,7 +182,7 @@
 
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-              <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+              <img src="dist/img/user2.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
               <a href="#" class="d-block"><?php echo Core::$user->name; ?></a>
@@ -220,8 +220,8 @@
               </li>
 
 
-              <li class="nav-item">
-                <a href="#" class="nav-link">
+              <li class="nav-item ">
+                <a href="#" class="nav-link ">
                   <i class="nav-icon fas fa-folder-open"></i>
                   <p>
                     Catalogos
@@ -245,8 +245,8 @@
                   </li>
                 </ul>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
+              <li class="nav-item menu-open">
+                <a href="#" class="nav-link active">
                   <i class="nav-icon fas fa-folder-open"></i>
                   <p>
                     IDOS
@@ -255,17 +255,38 @@
                 </a>
                 <ul class="nav nav-treeview">
 
-                  <li class="nav-item">
-                    <!-- <a href="./?view=areastur&opt=all" class="nav-link"> -->
+                  <!-- <li class="nav-item">
+                     <a href="./?view=areastur&opt=all" class="nav-link"> 
                     <a href="./?view=cargaido&opt=all" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Cargar IDO</p>
                     </a>
+                  </li> -->
+                  <li class="nav-item">
+                    <!-- <a href="./?view=areastur&opt=all" class="nav-link"> -->
+                    <a href="./?view=carga_ido&opt=all" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Cargar IDO </p>
+                    </a>
                   </li>
+                  <!-- <li class="nav-item">
+                 <a href="./?view=areastur&opt=all" class="nav-link"> 
+                    <a href="./?view=carga_ido_1&opt=all" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Cargar IDO 3</p>
+                    </a> 
+                  </li>
+                -->
                   <li class="nav-item">
                     <a href="./?view=idoall&opt=all" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Ver IDO´s</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./?view=idosxdia&opt=all" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Ver IDO´s 2</p>
                     </a>
                   </li>
 
@@ -295,7 +316,7 @@
                   </p>
                 </a>
               </li> -->
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="./?view=agenda&opt=all" class="nav-link">
                   <i class="nav-icon fas fa-calendar-alt"></i>
 
@@ -304,18 +325,18 @@
 
                   </p>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a href="./?view=calendario&opt=all" class="nav-link">
                   <i class="nav-icon fas fa-calendar-alt"></i>
 
                   <p>
-                    Calendario
+                    Clasificados
 
                   </p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="./?view=calendario_1&opt=all" class="nav-link">
                   <i class="nav-icon fas fa-calendar-alt"></i>
 
@@ -354,13 +375,13 @@
 
                   </p>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a href="./?view=calendario_5&opt=all" class="nav-link">
                   <i class="nav-icon fas fa-calendar-alt"></i>
 
                   <p>
-                    Pruebas 5
+                    Pruebas
 
                   </p>
                 </a>
@@ -410,7 +431,7 @@
       </div>
       <!-- /.content-wrapper -->
       <footer class="main-footer">
-        <strong><a href="http://oldskool.com">OldSkool</a> &copy; 2024 </strong>
+        <strong>Developed by <a href="http://oldskool.com">Mtro. Gustavo Barrios Martinez</a> &copy; 2024 </strong>
         <div class="float-right d-none d-sm-inline-block">
           <b>Version</b> 1.0
         </div>
@@ -519,6 +540,10 @@
   <script src="plugins/fullcalendar/main.js"></script>
   <!-- AdminLTE App -->
   <script src="dist/js/adminlte.js"></script>
+  <!-- OPTIONAL SCRIPTS -->
+  <script src="plugins/chart.js/Chart.min.js"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="dist/js/pages/dashboard3.js"></script>
 
   <script src="dist/js/function.js"></script>
 

@@ -17,6 +17,8 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "add") {
 } else if (isset($_GET["opt"]) && $_GET["opt"] == "update") {
 
 	$per = IdoAllData::getById($_POST["_id"]);
+	$per->client_id = $_POST["client_id"];
+	$per->item_id = $_POST["item_id"];
 	$per->clasificacion = $_POST["clasificacion"];
 	$per->update();
 	Core::redir("./?view=idoall&opt=all");
@@ -28,7 +30,8 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "add") {
 	$per->update();
 	Core::redir("./?view=idoall&opt=allF&fecha=$fecha");
 } else if (isset($_GET["opt"]) && $_GET["opt"] == "del") {
+
 	$per = IdoAllData::getById($_GET["id"]);
-	$per->del();
-	Core::redir("./?view=clasificaciones&opt=all");
+	$per->delClas();
+	Core::redir("./?view=idoall&opt=all");
 }

@@ -13,6 +13,16 @@ class IdoAllData
 		$this->created_at = "NOW()";
 	}
 
+	public function getItem()
+	{
+		return AreasturData::getById($this->client_id);
+	}
+	public function getItem2()
+	{
+		return ClasificacionesData::getById($this->item_id);
+	}
+
+
 	public function add()
 	{
 		$clasi = "SC";
@@ -29,6 +39,12 @@ class IdoAllData
 		$sql = "delete from " . self::$tablename . " where id=$this->id";
 		Executor::doit($sql);
 	}
+	public function delClas()
+	{
+		$clasi = "SI";
+		$sql = "update " . self::$tablename . " set clasificado=\"$clasi\" where id=$this->id";
+		Executor::doit($sql);
+	}
 
 	public static function delBy($k, $v)
 	{
@@ -38,7 +54,8 @@ class IdoAllData
 
 	public function update()
 	{
-		$sql = "update " . self::$tablename . " set clasificacion=\"$this->clasificacion\" where id=$this->id";
+		$clasi = "SI";
+		$sql = "update " . self::$tablename . " set item_id=\"$this->item_id\",client_id=\"$this->client_id\",clasificacion=\"$this->clasificacion\",clasificado=\"$clasi\" where id=$this->id";
 		Executor::doit($sql);
 	}
 
@@ -70,7 +87,13 @@ class IdoAllData
 
 	public static function getAll()
 	{
-		$sql = "select * from " . self::$tablename;
+		$sql = "select * from " . self::$tablename . " where clasificado ='NO'";
+		$query = Executor::doit($sql);
+		return Model::many($query[0], new IdoAllData());
+	}
+	public static function getAllC()
+	{
+		$sql = "select * from " . self::$tablename . " where clasificado ='SI'";
 		$query = Executor::doit($sql);
 		return Model::many($query[0], new IdoAllData());
 	}
@@ -83,7 +106,7 @@ class IdoAllData
 
 	public static function getByFecha($fecha)
 	{
-		$sql = "select * from " . self::$tablename . " where fecha='$fecha'";
+		$sql = "select * from " . self::$tablename . " where clasificado ='SI' and fecha='$fecha'";
 		$query = Executor::doit($sql);
 		//return Model::one($query[0], new IdoAllData());
 		return Model::many($query[0], new IdoAllData());

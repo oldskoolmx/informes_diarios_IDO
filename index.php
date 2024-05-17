@@ -1,9 +1,11 @@
 <?php
-$debug= true;
-if($debug){
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
+//activamos el modo debug para checar los errores
+$debug = false;
+if ($debug) {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 }
 
 
@@ -17,5 +19,3 @@ session_start();
 
 $lb = new Lb();
 $lb->start();
-
-?>

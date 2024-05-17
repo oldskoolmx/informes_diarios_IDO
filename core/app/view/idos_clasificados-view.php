@@ -29,7 +29,7 @@
 
 <?php if (isset($_GET["opt"]) && $_GET["opt"] == "all") :
 
-	$contacts = IdoAllData::getAll();
+	$contacts = IdoAllData::getAllC();
 ?>
 	<section class="content">
 		<div class="container-fluid">
@@ -42,7 +42,7 @@
 							<h1 class=""><b>I D O </b> | Informes Diarios de Operacion</h1>
 							<?php //$prueba = Core::$user->name; echo $prueba; 
 							?>
-							<a href="./?view=idos_clasificados&opt=all" class="btn btn-primary">Clasificados</a>
+							<a href="./?view=idoall&opt=all" class="btn btn-primary">Sin Clasificar</a>
 						</div>
 						<div class="card-body">
 							<?php if (count($contacts) > 0) : ?>
@@ -75,12 +75,12 @@
 												<td><b><?php echo $con->vueltas; ?></b></td>
 
 												<td style="width:200px; ">
-													<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?php echo $con->id; ?>">
+													<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?php echo $con->id; ?>" disabled>
 														<i class="fa fa-edit"></i> Clasificar
 													</button>
 													<!-- <a href="./?view=idoall&opt=edit&id=<?php //echo $con->id; 
 																								?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a> -->
-													<a href="./?action=idoall&opt=del&id=<?php echo $con->id; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> No Aplica</a>
+													<a href="./?action=idoall&opt=del&id=<?php echo $con->id; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm disabled" onclick="fntDelPersona(1)"><i class="fa fa-trash"></i> No Aplica</a>
 												</td>
 											</tr>
 										<?php endforeach; ?>
@@ -297,10 +297,10 @@
 					<div class="card card-primary card-outline">
 						<div class="card-header">
 
-							<?php $prueba = $_GET["fecha"]; ?>
-							<h1 class=""><b>I D O </b> | Informe Diario de Operacion del <b><?php echo $prueba; ?></b></h1>
-
-							<a href="./?view=calendario&opt=all" class="btn btn-primary">Regresar</a>
+							<h1 class=""><b>I D O </b> | Informes Diarios de Operacion</h1>
+							<?php //$prueba = $_GET["fecha"];	echo $prueba;
+							?>
+							<a href="./?view=idoall&opt=new" class="btn btn-primary">Nueva Area</a>
 						</div>
 						<div class="card-body">
 							<?php if (count($contacts) > 0) : ?>
@@ -310,26 +310,22 @@
 											<th>Linea</th>
 											<th>Hora</th>
 											<th>Descripcion</th>
-											<th>Averia</th>
-											<th>Clasificacion</th>
 											<th>Retardo</th>
+											<th>Clasificacion</th>
+											<th>Accion</th>
 										</thead>
-										<?php foreach ($contacts as $con) :
-											$areas = $con->getItem();
-											$averias = $con->getItem2(); ?>
+										<?php foreach ($contacts as $con) : ?>
 											<tr>
 												<td><?php echo $con->linea; ?></td>
 												<td><?php echo $con->hora; ?></td>
 												<td><?php echo $con->descripcion; ?></td>
-												<td><span class="badge bg-success"><?php echo $areas->name; ?></span></td>
-												<td><span class="badge bg-primary"><?php echo $averias->name; ?></span> </td>
-												<td><span class="badge bg-danger"><?php echo $con->retardo; ?></span></td>
-												<!-- <td style="width:150px; ">
-													<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?php //echo $con->id; 
-																																					?>">
+												<td><?php echo $con->retardo; ?></td>
+												<td><?php echo $con->clasificacion; ?></td>
+												<td style="width:150px; ">
+													<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editModal<?php echo $con->id; ?>">
 														<i class="fa fa-edit"></i>Clasificar
 													</button>
-												</td> -->
+												</td>
 											</tr>
 										<?php endforeach; ?>
 									</table>

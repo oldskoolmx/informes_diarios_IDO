@@ -26,280 +26,251 @@
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
+    <div class="content">
       <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-primary">
-              <div class="inner">
-                <h3><?php echo count(DocusData::getAll()); ?></h3>
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Online Store Visitors</h3>
+                  <a href="javascript:void(0);">View Report</a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex">
+                  <p class="d-flex flex-column">
+                    <span class="text-bold text-lg">820</span>
+                    <span>Visitors Over Time</span>
+                  </p>
+                  <p class="ml-auto d-flex flex-column text-right">
+                    <span class="text-success">
+                      <i class="fas fa-arrow-up"></i> 12.5%
+                    </span>
+                    <span class="text-muted">Since last week</span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
 
-                <p><b>D O C U M E N T O S</b></p>
-                <p><b>T O T A L E S </b></p>
+                <div class="position-relative mb-4">
+                  <canvas id="visitors-chart" height="200"></canvas>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fas fa-square text-primary"></i> This Week
+                  </span>
+
+                  <span>
+                    <i class="fas fa-square text-gray"></i> Last Week
+                  </span>
+                </div>
               </div>
-              <div class="icon">
-                <i class="fas fa-folder-open"></i>
-                <!-- <i class="fa-solid fa-folder-open"></i> -->
+            </div>
+            <!-- /.card -->
+
+            <div class="card">
+              <div class="card-header border-0">
+                <h3 class="card-title">Products</h3>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-tool btn-sm">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
               </div>
-              <a href="./?view=tester&opt=all" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+              <div class="card-body table-responsive p-0">
+                <table class="table table-striped table-valign-middle">
+                  <thead>
+                    <tr>
+                      <th>Product</th>
+                      <th>Price</th>
+                      <th>Sales</th>
+                      <th>More</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                        Some Product
+                      </td>
+                      <td>$13 USD</td>
+                      <td>
+                        <small class="text-success mr-1">
+                          <i class="fas fa-arrow-up"></i>
+                          12%
+                        </small>
+                        12,000 Sold
+                      </td>
+                      <td>
+                        <a href="#" class="text-muted">
+                          <i class="fas fa-search"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                        Another Product
+                      </td>
+                      <td>$29 USD</td>
+                      <td>
+                        <small class="text-warning mr-1">
+                          <i class="fas fa-arrow-down"></i>
+                          0.5%
+                        </small>
+                        123,234 Sold
+                      </td>
+                      <td>
+                        <a href="#" class="text-muted">
+                          <i class="fas fa-search"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                        Amazing Product
+                      </td>
+                      <td>$1,230 USD</td>
+                      <td>
+                        <small class="text-danger mr-1">
+                          <i class="fas fa-arrow-down"></i>
+                          3%
+                        </small>
+                        198 Sold
+                      </td>
+                      <td>
+                        <a href="#" class="text-muted">
+                          <i class="fas fa-search"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                        Perfect Item
+                        <span class="badge bg-danger">NEW</span>
+                      </td>
+                      <td>$199 USD</td>
+                      <td>
+                        <small class="text-success mr-1">
+                          <i class="fas fa-arrow-up"></i>
+                          63%
+                        </small>
+                        87 Sold
+                      </td>
+                      <td>
+                        <a href="#" class="text-muted">
+                          <i class="fas fa-search"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col-md-6 -->
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                  <h3 class="card-title">Sales</h3>
+                  <a href="javascript:void(0);">View Report</a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex">
+                  <p class="d-flex flex-column">
+                    <span class="text-bold text-lg">$18,230.00</span>
+                    <span>Sales Over Time</span>
+                  </p>
+                  <p class="ml-auto d-flex flex-column text-right">
+                    <span class="text-success">
+                      <i class="fas fa-arrow-up"></i> 33.1%
+                    </span>
+                    <span class="text-muted">Since last month</span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
+
+                <div class="position-relative mb-4">
+                  <canvas id="sales-chart" height="200"></canvas>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fas fa-square text-primary"></i> This year
+                  </span>
+
+                  <span>
+                    <i class="fas fa-square text-gray"></i> Last year
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- /.card -->
+
+            <div class="card">
+              <div class="card-header border-0">
+                <h3 class="card-title">Online Store Overview</h3>
+                <div class="card-tools">
+                  <a href="#" class="btn btn-sm btn-tool">
+                    <i class="fas fa-download"></i>
+                  </a>
+                  <a href="#" class="btn btn-sm btn-tool">
+                    <i class="fas fa-bars"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                  <p class="text-success text-xl">
+                    <i class="ion ion-ios-refresh-empty"></i>
+                  </p>
+                  <p class="d-flex flex-column text-right">
+                    <span class="font-weight-bold">
+                      <i class="ion ion-android-arrow-up text-success"></i> 12%
+                    </span>
+                    <span class="text-muted">CONVERSION RATE</span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
+                <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                  <p class="text-warning text-xl">
+                    <i class="ion ion-ios-cart-outline"></i>
+                  </p>
+                  <p class="d-flex flex-column text-right">
+                    <span class="font-weight-bold">
+                      <i class="ion ion-android-arrow-up text-warning"></i> 0.8%
+                    </span>
+                    <span class="text-muted">SALES RATE</span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
+                <div class="d-flex justify-content-between align-items-center mb-0">
+                  <p class="text-danger text-xl">
+                    <i class="ion ion-ios-people-outline"></i>
+                  </p>
+                  <p class="d-flex flex-column text-right">
+                    <span class="font-weight-bold">
+                      <i class="ion ion-android-arrow-down text-danger"></i> 1%
+                    </span>
+                    <span class="text-muted">REGISTRATION RATE</span>
+                  </p>
+                </div>
+                <!-- /.d-flex -->
+              </div>
             </div>
           </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3><?php echo count(DocusData::getAllP()); ?></h3>
-
-                <p><b>P O R </b> </b></p>
-                <p><b> A T E N D E R</b></p>
-              </div>
-              <div class="icon">
-                <i class="fas fa-keyboard"></i>
-                <!-- <i class="ion ion-pie-graph"></i> -->
-              </div>
-              <a href="./?view=tester&opt=allP" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-orange">
-              <div class="inner">
-                <h3><?php echo count(DocusData::getAllPre()); ?></h3>
-
-                <p><b>E N </b></p>
-                <p><b>T R A M I T E </b></p>
-              </div>
-              <div class="icon">
-                <!-- <i class="ion ion-pie-graph"></i> -->
-                <i class="fas fa-wallet"></i>
-              </div>
-              <a href="./?view=tester&opt=allPre" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3><?php echo count(DocusData::getAllA()); ?></h3>
-
-                <p><b>D O C U M E N T O S </b></p>
-                <p><b>A T E N D I D O S </b></p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-thumbs-up"></i>
-              </div>
-              <a href="./?view=tester&opt=allA" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-
+          <!-- /.col-md-6 -->
         </div>
         <!-- /.row -->
-        <!-- Main row -->
-        <?php ?>
-        <div class="row">
-          <!-- Left col -->
-          <section class="col-lg-12 connectedSortable">
-            <!-- Custom tabs (Charts with tabs)-->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-chart-pie mr-1"></i>
-                  <b>D O C U M E N T O S</b>
-                </h3>
-
-              </div><!-- /.card-header -->
-              <div class="card-body">
-
-                <canvas id="chartjs-dashboard-line" style="height:300px;">
-                </canvas>
-
-
-              </div><!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-
-          </section>
-
-          <section class="col-lg-12 connectedSortable">
-            <!-- Custom tabs (Charts with tabs)-->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-calendar-alt mr-1"></i>
-                  <b>D O C U M E N T O S </b>
-                </h3>
-
-              </div><!-- /.card-header -->
-              <div class="card-body table-responsive">
-
-                <?php
-                $contacts = DocusData::getAll();
-                if (count($contacts) > 0) : ?>
-                  <div>
-                    <table class="table table-striped table-bordered table-hover datatable ">
-                      <thead>
-                        <th>N. Turno y Oficio</th>
-                        <th>F. Turno</th>
-                        <th>F. Oficio</th>
-                        <th>F. Atencion</th>
-                        <th>Solicitud</th>
-                        <th>F. Compromiso</th>
-                        <th>Estatus</th>
-
-                        <th>Acciones</th>
-
-                      </thead>
-
-                      <?php foreach ($contacts as $con) :
-                        $item  = $con->getClasificaciones();
-                        $usuario  = $con->getRegistro(); ?>
-                        <tr>
-                          <td><?php echo $con->r_n_oficio; ?></td>
-                          <td><?php echo $con->r_f_e_oficio; ?></td>
-                          <td><?php echo $con->r_f_r_oficio; ?></td>
-                          <td><?php echo $con->r_f_atencion; ?></td>
-                          <td><?php echo $con->r_solicitud; ?></td>
-                          <td><?php echo $con->d_f_compromiso; ?></td>
-
-
-                          <td>
-                            <?php if ($item->id == 1) :  ?>
-                              <span class="badge bg-danger"><?php echo $item->name; ?></span>
-                            <?php elseif ($item->id == 2) : ?>
-                              <span class="badge bg-success"><?php echo $item->name; ?></span>
-                            <?php else : ?>
-                              <span class="badge bg-warning"><?php echo $item->name; ?></span>
-                            <?php endif; ?>
-                          </td>
-
-
-                          <td style="width:190px; ">
-                            <a href="./?view=docus&opt=edit&id=<?php echo $con->id; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Editar</a>
-                            <a href="./?action=docus&opt=del&id=<?php echo $con->id; ?>" id="item-<?php echo $con->id; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar</a>
-                            <script type="text/javascript">
-                              $("#item-<?php echo $con->id; ?>").click(function(e) {
-                                e.preventDefault();
-                                x = confirm("Seguro desea eliminar este elemento?");
-                                if (x) {
-                                  window.location = "./?action=documentos&opt=del&id=<?php echo $con->id; ?>";
-                                }
-                              });
-                            </script>
-                          </td>
-                        </tr>
-                      <?php endforeach; ?>
-                    </table>
-                  </div>
-
-                <?php else : ?>
-
-
-
-
-
-                  <div class="info-box mb-3 bg-warning">
-                    <span class="info-box-icon"><i class="fas fa-tag"></i></span>
-
-                    <div class="info-box-content">
-                      <span class="info-box-text"><?php echo $fecha_actual = date("d-m-Y"); ?></span>
-                      <span class="info-box-number">NO HAY DOCUMENTOS REGISTRADOS</span>
-                    </div>
-                    <!-- /.info-box-content -->
-                  </div>
-
-                <?php endif; ?>
-
-
-              </div><!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-
-          </section>
-          <!-- /.Left col -->
-          <!-- right col (We are only adding the ID to make the widgets sortable)-->
-
-          <!-- right col -->
-        </div>
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-    </section>
-
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
-        var gradient = ctx.createLinearGradient(0, 0, 0, 225);
-        gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
-        gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
-        // Line chart
-        new Chart(document.getElementById("chartjs-dashboard-line"), {
-          type: "line",
-          data: {
-            labels: [
-              <?php
-              $start  = time() - (60 * 60 * 26 * 30);
-              for ($i = $start; $i <= time(); $i += (60 * 60 * 24)) : ?> "<?php echo date('d-m-Y', $i); ?>",
-              <?php endfor; ?>
-
-            ],
-            datasets: [{
-              label: "Atendidos",
-              fill: true,
-              backgroundColor: gradient,
-              borderColor: "#3B7DDD",
-              data: [
-                <?php
-                $start  = time() - (60 * 60 * 26 * 30);
-                for ($i = $start; $i <= time(); $i += (60 * 60 * 24)) : ?>
-                  <?php echo (DocusData::getByDate(date('Y-m-d', $i))->cnt); ?>,
-                <?php endfor; ?>
-              ],
-            }]
-          },
-          options: {
-            maintainAspectRatio: false,
-            legend: {
-              display: false
-            },
-            tooltips: {
-              intersect: true
-            },
-            hover: {
-              intersect: true
-            },
-            plugins: {
-              filler: {
-                propagate: true
-              }
-            },
-            scales: {
-              xAxes: [{
-                reverse: true,
-                gridLines: {
-                  color: "rgba(0,0,0,0.0)"
-                }
-              }],
-              yAxes: [{
-                ticks: {
-                  stepSize: 1000
-                },
-                display: true,
-                borderDash: [3, 3],
-                gridLines: {
-                  color: "rgba(0,0,0,0.0)"
-                }
-              }]
-            }
-          }
-        });
-      });
-    </script>
+      </div>
+      <!-- /.container-fluid -->
+    </div>

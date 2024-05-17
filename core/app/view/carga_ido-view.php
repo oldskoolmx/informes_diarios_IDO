@@ -118,7 +118,7 @@ $con = connect();
                                     </div>";
 
 									// Insertar la reserva en tb_reservas usando la fecha capturada
-									$sqlReserva = "INSERT INTO tb_reservas (id_usuario, name, tipo_servicio, f_cita, h_cita, title, start, end, color, created_at, updated_at) VALUES (2, 'ido $fecha_reserva', 'prueba IDO', '$fecha_reserva', '10:00', 'IDO $fecha_reserva', '$fecha_reserva', '$fecha_reserva', 'blue', NOW(), NOW())";
+									$sqlReserva = "INSERT INTO tb_reservas (id_usuario, name, tipo_servicio, f_cita, h_cita, title, start, end, color, created_at, updated_at) VALUES (2, 'IDO $fecha_reserva', 'prueba IDO', '$fecha_reserva', '10:00', 'IDO $fecha_reserva', '$fecha_reserva', '$fecha_reserva', 'blue', NOW(), NOW())";
 									$resultReserva = mysqli_query($con, $sqlReserva);
 									if (!$resultReserva) {
 										echo "Error al insertar la reserva.";

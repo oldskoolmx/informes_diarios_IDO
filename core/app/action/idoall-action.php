@@ -34,4 +34,13 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "add") {
 	$per = IdoAllData::getById($_GET["id"]);
 	$per->delClas();
 	Core::redir("./?view=idoall&opt=all");
+} else if (isset($_GET["opt"]) && $_GET["opt"] == "updateF") {
+
+	$per = IdoAllData::getById($_POST["_id"]);
+	$per->client_id = $_POST["client_id"];
+	$per->item_id = $_POST["item_id"];
+	$per->clasificacion = $_POST["clasificacion"];
+	$fecha = $per->fecha;
+	$per->update();
+	Core::redir("./?view=idoall&opt=allD&fecha=$fecha");
 }

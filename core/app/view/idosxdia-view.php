@@ -22,7 +22,7 @@ $events = ReservasData::getEvery();
 
 
 foreach ($events as $event) {
-  $thejson[] = array("title" => $event->title,  "url" => "./?view=idoall&opt=allF&fecha=" . $event->f_cita, "start" => $event->f_cita . "T" . $event->h_cita, "color" => $event->color);
+  $thejson[] = array("title" => $event->title,  "url" => "./?view=idoall&opt=allD&fecha=" . $event->f_cita, "start" => $event->f_cita . "T" . $event->h_cita, "color" => $event->color);
   //$thejson[] = array("title" => $event->title,  "url" => "./?view=idoall&opt=all" . $event->f_cita, "start" => $event->f_cita . "T" . $event->h_cita, "color" => $event->color);
 }
 
@@ -38,6 +38,13 @@ foreach ($events as $event) {
         left: 'prev,next today',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      themeSystem: 'bootstrap',
+      buttonText: {
+        today: 'Hoy',
+        month: 'Mes',
+        week: 'Semana',
+        day: 'Día'
       },
       locale: 'es',
       defaultDate: '<?php echo date('Y-m-d'); ?>',

@@ -111,6 +111,13 @@ class IdoAllData
 		//return Model::one($query[0], new IdoAllData());
 		return Model::many($query[0], new IdoAllData());
 	}
+	public static function getByFechaAll($fecha)
+	{
+		$sql = "select * from " . self::$tablename . " where  fecha='$fecha'";
+		$query = Executor::doit($sql);
+		//return Model::one($query[0], new IdoAllData());
+		return Model::many($query[0], new IdoAllData());
+	}
 	public static function getAllBy($k, $v)
 	{
 		$sql = "select * from " . self::$tablename . " where $k=\"$v\"";

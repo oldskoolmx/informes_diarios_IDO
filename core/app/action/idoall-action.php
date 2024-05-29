@@ -43,4 +43,30 @@ if (isset($_GET["opt"]) && $_GET["opt"] == "add") {
 	$fecha = $per->fecha;
 	$per->update();
 	Core::redir("./?view=idoall&opt=allD&fecha=$fecha");
+} /* else if (isset($_GET["opt"]) && $_GET["opt"] == "updateLyF") {
+
+	// Obtener el valor del parámetro 'tab' para saber en qué pestaña estamos
+	$currentTab = isset($_GET['tab']) ? $_GET['tab'] : '';
+
+	$per = IdoAllData::getById($_POST["_id"]);
+	$per->client_id = $_POST["client_id"];
+	$per->item_id = $_POST["item_id"];
+	$per->clasificacion = $_POST["clasificacion"];
+	$fecha = $per->fecha;
+	$per->update();
+	//Core::redir("./?view=calendario_5&opt=allD&fecha=$fecha");
+	Core::redir("./?view=calendario_5&opt=allD&fecha=$fecha");
+} */ else if (isset($_GET["opt"]) && $_GET["opt"] == "updateLyF") {
+
+	// Obtener el valor del parámetro 'tab' para saber en qué pestaña estamos
+	$currentTab = isset($_GET['tab']) ? $_GET['tab'] : '';
+
+	$per = IdoAllData::getById($_POST["_id"]);
+	$per->client_id = $_POST["client_id"];
+	$per->item_id = $_POST["item_id"];
+	$per->clasificacion = $_POST["clasificacion"];
+	$fecha = $per->fecha;
+	$per->update();
+	// Redirigir incluyendo el parámetro 'tab'
+	Core::redir("./?view=calendario_5&opt=allD&fecha=$fecha&tab=$currentTab");
 }

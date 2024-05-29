@@ -108,6 +108,24 @@
                   <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Apellidos" required>
                 </div>
                 <div class="mb-3">
+                  <label for="tipo" class="form-label">Tipo de Usuario</label>
+                  <select name="kind" class="form-control" required>
+                    <option value="">-- SELECCIONE --</option>
+                    <option value="1">Administrador</option>
+                    <option value="2">Usuario normal</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="gerencias" class="form-label">Gerencias</label>
+                  <select name="gerencias" id="gerencias" class="form-control" required>
+                    <option value="">-- SELECCIONE --</option>
+                    <option value="1">Gerencias 1, 3, 4, y 12</option>
+                    <option value="2">Gerencias 2, 5, 6, y B</option>
+                    <option value="3">Gerencias 7, 8, 9, y A</option>
+                    <option value="4">Todas</option>
+                  </select>
+                </div>
+                <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Direccion</label>
                   <input type="text" name="address" id="address" class="form-control" placeholder="Direccion" required>
                 </div>
@@ -120,6 +138,7 @@
                   <label for="exampleInputEmail1" class="form-label">Password</label>
                   <input type="password" name="passsword" id="passsword" class="form-control" placeholder="Password" required>
                 </div>
+
 
                 <button type="submit" class="btn btn-primary">Agregar</button>
               </form>
@@ -159,6 +178,23 @@
                   <label for="exampleInputEmail1" class="form-label">Nombre de usuario</label>
                   <input type="text" name="username" id="username" class="form-control" value="<?php echo $con->username; ?>" placeholder="Nombre de usuario" required>
                 </div>
+
+                <div class="mb-3">
+                  <label for="inputEmail1" class="col-lg-2 control-label">Tipo</label>
+                  <div class="col-md-6">
+                    <select name="kind" class="form-control" required>
+                      <option value="2" <?php if ($user->kind == 2) {
+                                          echo "selected";
+                                        } ?>>Usuario normal</option>
+                      <option value="1" <?php if ($user->kind == 1) {
+                                          echo "selected";
+                                        } ?>>Administrador</option>
+                    </select>
+
+                  </div>
+                </div>
+
+
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Email </label>
                   <input type="email" name="email" class="form-control" value="<?php echo $con->email; ?>" placeholder="Email" required>

@@ -219,32 +219,31 @@
                 </a>
               </li>
 
+              <?php if (Core::$user->kind == 1) : ?>
+                <li class="nav-item "><a href="#" class="nav-link "><i class="nav-icon fas fa-folder-open"></i>
+                    <p>
+                      Catalogos
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
 
-              <li class="nav-item ">
-                <a href="#" class="nav-link ">
-                  <i class="nav-icon fas fa-folder-open"></i>
-                  <p>
-                    Catalogos
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="./?view=areastur&opt=all" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Areas</p>
+                      </a>
+                    </li>
 
-                  <li class="nav-item">
-                    <a href="./?view=areastur&opt=all" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Areas</p>
-                    </a>
-                  </li>
-
-                  <li class="nav-item">
-                    <a href="./?view=clasificaciones&opt=all" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Averias</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
+                    <li class="nav-item">
+                      <a href="./?view=clasificaciones&opt=all" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Averias</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              <?php endif; ?>
               <li class="nav-item menu-open">
                 <a href="#" class="nav-link active">
                   <i class="nav-icon fas fa-folder-open"></i>
@@ -277,16 +276,22 @@
                     </a> 
                   </li>
                 -->
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                     <a href="./?view=idoall&opt=all" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Ver IDO´s</p>
                     </a>
-                  </li>
+                  </li> -->
                   <li class="nav-item">
                     <a href="./?view=idosxdia&opt=all" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Ver IDO´s 2</p>
+                      <p>Clasificar IDO</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="./?view=idosxdia_p&opt=all" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Clasificar IDO 2</p>
                     </a>
                   </li>
 
@@ -298,15 +303,17 @@
                   </li> -->
                 </ul>
               </li>
-              <li class="nav-item">
-                <a href="./?view=users&opt=all" class="nav-link">
-                  <i class="nav-icon fas fa-users"></i>
-                  <p>
-                    Usuarios
+              <?php if (Core::$user->kind == 1) : ?>
+                <li class="nav-item">
+                  <a href="./?view=users&opt=all" class="nav-link">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>
+                      Usuarios
 
-                  </p>
-                </a>
-              </li>
+                    </p>
+                  </a>
+                </li>
+              <?php endif; ?>
               <!--  <li class="nav-item">
                 <a href="./?view=docus&opt=all" class="nav-link">
                   <i class="nav-icon fas fa-edit"></i>
@@ -726,6 +733,76 @@
         /*columnDefs:[{
           className:"centered",targets:[0,1,2,3,4,5,6,7,8,9]
         }],*/
+        responsive: true,
+        buttons: [
+          'copyHtml5',
+          'excelHtml5',
+          'csvHtml5',
+          'pdfHtml5',
+          'print'
+        ],
+        /*  dom: "<'row'<'col-md-12 text-center'B>>" +
+           "<'row'<'col-md-6'l><'col-md-6'f>>" +
+           "<'row'<'col-md-12'tr>>" +
+           "<'row'<'col-md-6'i><'col-md-6'p>>", */
+        dom: 'Bfrtilp',
+        language: {
+          "sProcessing": "Procesando...",
+          "sLengthMenu": "Mostrar _MENU_ registros",
+          "sZeroRecords": "No se encontraron resultados",
+          "sEmptyTable": "Ningún dato disponible en esta tabla",
+          "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+          "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+          "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+          "sInfoPostFix": "",
+          "sSearch": "Buscar:",
+          "sUrl": "",
+          "sInfoThousands": ",",
+          "sLoadingRecords": "Cargando...",
+          "oPaginate": {
+            "sFirst": "Primero",
+            "sLast": "Último",
+            "sNext": "Siguiente",
+            "sPrevious": "Anterior"
+          },
+          "oAria": {
+            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+          }
+        }
+      });
+    });
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".datatableC").DataTable({
+        columnDefs: [{
+            width: '10%',
+            targets: 0
+          }, // Linea
+          {
+            width: '10%',
+            targets: 1
+          }, // Hora
+          {
+            width: '45%',
+            targets: 2
+          }, // Descripcion
+          {
+            width: '10%',
+            targets: 3
+          }, // Retardo
+          {
+            width: '10%',
+            targets: 4
+          }, // V. Perdidas
+          {
+            width: '15%',
+            targets: 5
+          } // Acciones
+        ],
+        fixedColumns: true,
+        autoWidth: false,
         responsive: true,
         buttons: [
           'copyHtml5',

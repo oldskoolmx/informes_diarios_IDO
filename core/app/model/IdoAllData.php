@@ -103,6 +103,12 @@ class IdoAllData
 		$query = Executor::doit($sql);
 		return Model::many($query[0], new IdoAllData());
 	}
+	public static function getAllLyF($linea, $fecha)
+	{
+		$sql = "select * from " . self::$tablename . " where linea='$linea' and fecha='$fecha'";
+		$query = Executor::doit($sql);
+		return Model::many($query[0], new IdoAllData());
+	}
 
 	public static function getByFecha($fecha)
 	{
